@@ -1,0 +1,892 @@
+<!DOCTYPE html>
+  <html lang="zh-TW">
+  <head>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="keywords" content="90.am‧老人基金會‧老吾老以及人之老‧老人服務‧老人福利">
+      <title>老人補助查詢 - 財團法人台北市老人基金會</title>
+      
+      <!-- Google Font -->
+      <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@200;300;400;600;900&display=swap" rel="stylesheet">
+  
+      <!-- Css Styles -->
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/4.6.2/css/bootstrap.min.css" />
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/elegant-icons/1.0.0/style.min.css" />
+  
+      <style>
+          /* 主題顏色定義 - 參考Ogani樣式但調整為適合老人基金會 */
+          :root {
+              --primary-color: #7fad39; /* Ogani主色 */
+              --secondary-color: #2a4365;
+              --accent-color: #4a5568;
+              --text-color: #2d3748;
+              --light-bg: #f5f5f5;
+              --white: #ffffff;
+              --shadow-color: rgba(0, 0, 0, 0.1);
+              --footer-bg: #2a4365;
+              --border-color: #e8e8e8;
+          }
+  
+          * {
+              margin: 0;
+              padding: 0;
+              box-sizing: border-box;
+          }
+  
+          body {
+              font-family: "Microsoft JhengHei", "Cairo", sans-serif;
+              line-height: 1.6;
+              color: var(--text-color);
+              background-color: var(--light-bg);
+          }
+  
+          /* 基本連結樣式 */
+          a {
+              text-decoration: none;
+              color: var(--text-color);
+              transition: all 0.3s;
+          }
+  
+          a:hover {
+              color: var(--primary-color);
+              text-decoration: none;
+          }
+  
+          /* 標題樣式 */
+          h1, h2, h3, h4, h5, h6 {
+              font-weight: 600;
+              margin-bottom: 15px;
+          }
+  
+          /* 返回按鈕 */
+          .back-button {
+              display: inline-flex;
+              align-items: center;
+              padding: 8px 15px;
+              background-color: var(--secondary-color);
+              color: var(--white);
+              border-radius: 5px;
+              font-weight: 500;
+              margin-bottom: 20px;
+              transition: all 0.3s;
+          }
+  
+          .back-button:hover {
+              background-color: var(--primary-color);
+              color: var(--white);
+          }
+  
+          .back-button i {
+              margin-right: 5px;
+          }
+  
+          /* 頂部信息欄 */
+          .header__top {
+              background: var(--secondary-color);
+              padding: 10px 0;
+          }
+  
+          .header__top__left {
+              padding: 6px 0;
+          }
+  
+          .header__top__left p {
+              color: var(--white);
+              margin-bottom: 0;
+          }
+  
+          .header__top__right {
+              text-align: right;
+              padding: 6px 0;
+          }
+  
+          .header__top__right a {
+              color: var(--white);
+              margin-right: 15px;
+              font-size: 14px;
+          }
+  
+          .header__top__right a:hover {
+              color: var(--primary-color);
+          }
+  
+          /* Page Header */
+          .page-header {
+              background-color: var(--primary-color);
+              padding: 30px 0;
+              margin-bottom: 40px;
+          }
+  
+          .page-header h2 {
+              color: var(--white);
+              margin-bottom: 0;
+              font-weight: 700;
+          }
+  
+          /* 側邊欄篩選 */
+          .sidebar {
+              background-color: var(--white);
+              padding: 25px;
+              border-radius: 5px;
+              box-shadow: 0 5px 15px var(--shadow-color);
+          }
+  
+          .sidebar__item {
+              margin-bottom: 30px;
+          }
+  
+          .sidebar__item:last-child {
+              margin-bottom: 0;
+          }
+  
+          .sidebar__item h4 {
+              font-size: 18px;
+              font-weight: 700;
+              margin-bottom: 15px;
+          }
+  
+          .sidebar__item select {
+              width: 100%;
+              padding: 10px;
+              border: 1px solid var(--border-color);
+              border-radius: 5px;
+              font-size: 15px;
+              color: var(--text-color);
+              margin-bottom: 15px;
+          }
+  
+          .sidebar__item select:focus {
+              border-color: var(--primary-color);
+              outline: none;
+          }
+  
+          .sidebar__item button {
+              width: 100%;
+              padding: 10px;
+              background-color: var(--primary-color);
+              border: none;
+              color: var(--white);
+              font-weight: 600;
+              border-radius: 5px;
+              cursor: pointer;
+              transition: all 0.3s;
+          }
+  
+          .sidebar__item button:hover {
+              background-color: #5c8129;
+          }
+  
+          .content {
+              flex: 1;
+              padding: 20px;
+              overflow-y: auto;
+          }
+  
+          .page {
+              display: none;
+          }
+  
+          .page.active {
+              display: block;
+          }
+  
+          /* 補助內容卡片 */
+          .welfare-card {
+              background-color: var(--white);
+              border-radius: 5px;
+              box-shadow: 0 5px 15px var(--shadow-color);
+              padding: 25px;
+              margin-bottom: 25px;
+              transition: all 0.3s;
+          }
+  
+          .welfare-card:hover {
+              transform: translateY(-5px);
+          }
+  
+          .welfare-card__header {
+              border-bottom: 1px solid var(--border-color);
+              padding-bottom: 15px;
+              margin-bottom: 15px;
+          }
+  
+          .welfare-card__header h4 {
+              font-size: 20px;
+              font-weight: 700;
+              margin-bottom: 5px;
+          }
+  
+          .welfare-card__header p {
+              color: var(--accent-color);
+              margin-bottom: 0;
+          }
+  
+          .welfare-card__content {
+              margin-bottom: 15px;
+          }
+  
+          .welfare-card__content p {
+              margin-bottom: 10px;
+          }
+  
+          .welfare-card__info {
+              display: flex;
+              flex-wrap: wrap;
+              margin-bottom: 15px;
+          }
+  
+          .welfare-card__info-item {
+              flex: 0 0 50%;
+              max-width: 50%;
+              margin-bottom: 10px;
+          }
+  
+          .welfare-card__info-item strong {
+              display: block;
+              margin-bottom: 3px;
+          }
+  
+          .welfare-card__footer {
+              display: flex;
+              justify-content: space-between;
+              align-items: center;
+              padding-top: 15px;
+              border-top: 1px solid var(--border-color);
+          }
+  
+          .welfare-card__footer a {
+              display: inline-block;
+              padding: 8px 20px;
+              background-color: var(--primary-color);
+              color: var(--white);
+              border-radius: 30px;
+              font-size: 14px;
+              font-weight: 600;
+              transition: all 0.3s;
+          }
+  
+          .welfare-card__footer a:hover {
+              background-color: #5c8129;
+              color: var(--white);
+          }
+  
+          .welfare-card__tag {
+              display: inline-block;
+              padding: 3px 10px;
+              background-color: #eaf7dd;
+              color: var(--primary-color);
+              border-radius: 20px;
+              font-size: 12px;
+              margin-right: 5px;
+              margin-bottom: 5px;
+          }
+  
+          /* 分頁控件 */
+          .pagination-controls {
+              display: flex;
+              justify-content: center;
+              margin-top: 40px;
+          }
+  
+          .pagination-controls button {
+              margin: 0 10px;
+              padding: 8px 20px;
+              border-radius: 5px;
+              font-weight: 600;
+              transition: all 0.3s;
+          }
+  
+          .pagination-controls button:disabled {
+              background-color: #ccc;
+              cursor: not-allowed;
+          }
+  
+          /* Footer區塊 */
+          .footer {
+              background: var(--footer-bg);
+              padding: 70px 0 0;
+              color: #b5b5b5;
+              margin-top: 60px;
+          }
+  
+          .footer__widget {
+              margin-bottom: 30px;
+          }
+  
+          .footer__widget h6 {
+              color: var(--white);
+              font-size: 16px;
+              margin-bottom: 20px;
+          }
+  
+          .footer__widget p {
+              margin-bottom: 15px;
+          }
+  
+          .footer__copyright {
+              padding: 20px 0;
+              border-top: 1px solid rgba(255, 255, 255, 0.1);
+              text-align: center;
+              margin-top: 40px;
+          }
+  
+          .footer__copyright p {
+              margin-bottom: 0;
+          }
+  
+          /* 響應式設計 */
+          @media (max-width: 992px) {
+              .welfare-card__info-item {
+                  flex: 0 0 100%;
+                  max-width: 100%;
+              }
+          }
+  
+          @media (max-width: 768px) {
+              .sidebar {
+                  margin-bottom: 30px;
+              }
+  
+              .welfare-card__footer {
+                  flex-direction: column;
+                  align-items: flex-start;
+              }
+  
+              .welfare-card__footer a {
+                  margin-top: 15px;
+              }
+          }
+  
+          @media (max-width: 急速576px) {
+              .page-header h2 {
+                  font-size: 24px;
+              }
+  
+              .welfare-card__header h4 {
+                  font-size: 18px;
+              }
+          }
+      </style>
+  </head>
+  <body>
+      <!-- 頂部信息欄 -->
+      <div class="header__top">
+          <div class="container">
+              <div class="row">
+                  <div class="col-lg-6 col-md-6">
+                      <div class="header__top__left">
+                          <p>老吾老以及人之老，用愛與關懷，形成善的循環</p>
+                      </div>
+                  </div>
+                  <div class="col-lg-6 col-md-6">
+                      <div class="header__top__right">
+                          <a href="#"><i class="fa fa-envelope"></i> info@old.org.tw</a>
+                          <a href="#"><i class="fa fa-phone"></i> (02)2533-3333</a>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </div>
+  
+      <!-- 頁面標題 -->
+      <section class="header">
+          <div class="container">
+              <div class="row">
+                  <div class="col-lg-12 text-center">
+                      <h2>財團法人台北市老人基金會</h2>
+                  </div>
+              </div>
+          </div>
+      </section>
+  
+      <!-- 主要內容區域 -->
+      <section class="welfare-section">
+          <div class="container">
+              <div class="row">
+                  <div class="col-lg-12">
+                      <a href="main.htm" class="back-button"><i class="fa fa-arrow-left"></i> 回到首頁</a>
+                  </div>
+              </div>
+              <div class="row">
+                  <div class="col-lg-12">
+                      <div class="page-title">
+                          <h2>長者服務與資源——老人補助與津貼</h2>       
+                      </div>
+                  </div>
+              </div>
+              <div class="row">
+                  <!-- 側邊欄篩選 -->
+                  <div class="col-lg-3 col-md-4">
+                      <div class="sidebar">
+                          <div class="sidebar__item">
+                              <h4>福利篩選</h4>
+                              <div class="sidebar__item">
+                                  <select id="city">
+                                      <option value="">-- 選擇縣市 --</option>
+                                      <option value="taipei">台北市</option>
+                                      <option value="newtaipei">新北市</option>
+                                      <option value="taoyuan">桃園市</option>
+                                      <option value="taichung">台中市</option>
+                                      <option value="tainan">台南市</option>
+                                      <option value="kaohsiung">高雄市</option>
+                                      <option value="central">中央政府</option>
+                                      <option value="all">全部</option>
+                                  </select>
+                              </div>
+                              <div class="sidebar__item">
+                                  <select id="subsidyType">
+                                      <option value="">-- 補助類型 --</option>
+                                      <option value="financial">經濟補助</option>
+                                      <option value="medical">醫療補助</option>
+                                      <option value="housing">住宅補助</option>
+                                      <option value="living">生活津貼</option>
+                                      <option value="emergency">急難救助</option>
+                                      <option value="all">全部補助</option>
+                                  </select>
+                              </div>
+                              <div class="sidebar__item">
+                                  <select id="incomeLevel">
+                                      <option value="">-- 收入身分 --</option>
+                                      <option value="low">低收入戶</option>
+                                      <option value="middlelow">中低收入戶</option>
+                                      <option value="normal">一般戶</option>
+                                      <option value="all">全部身分</option>
+                                  </select>
+                              </div>
+                              <button id="filterBtn">查詢福利</button>
+                          </div>
+                          <div class="sidebar__item">
+                              <h4>常見問答</h4>
+                              <ul style="list-style-type: none; padding-left: 0;">
+                                  <li style="margin-bottom: 10px;"><a href="#">如何申請中低收入戶證明？</a></li>
+                                  <li style="margin-bottom: 10px;"><a href="#">老人福利補助申請流程</a></li>
+                                  <li style="margin-bottom: 10px;"><a href="#">各縣市社會局聯絡資訊</a></li>
+                                  <li style="margin-bottom: 10px;"><a href="#">長照服務申請指南</a></li>
+                                  <li><a href="#">最新老人福利政策</a></li>
+                              </ul>
+                          </div>
+                      </div>
+                  </div>
+  
+                  <!-- 主要內容 -->
+                  <div class="col-lg-9 col-md-8">
+                      <div class="content">
+                          <!-- 第一頁 -->
+                          <div id="page1" class="page active">
+                              <h2>第 1 頁</h2>
+                              <div id="welfareResults">
+                                  <!-- 中低收入老人生活津貼 -->
+                                  <div class="welfare-card">
+                                      <div class="welfare-card__header">
+                                          <h4>中低收入老人生活津貼</h4>
+                                          <p>中央政府 - 衛生福利部</p>
+                                      </div>
+                                      <div class="welfare-card__content">
+                                          <p>為提供中低收入老人基本生活保障，減輕其家庭經濟負擔，提升老人生活品質所提供的生活津貼補助。</p>
+                                          <div>
+                                              <span class="welfare-card__tag">經濟補助</span>
+                                              <span class="welfare-card__tag">生活津貼</span>
+                                          </div>
+                                      </div>
+                                      <div class="welfare-card__info">
+                                          <div class="welfare-card__info-item">
+                                              <strong>補助金額</strong>
+                                              <span>每月3,879元至7,759元不等</span>
+                                          </div>
+                                          <div class="welfare-card__info-item">
+                                              <strong>申請條件</strong>
+                                              <span>年滿65歲以上，且家庭總收入及不動產未達規定標準</span>
+                                          </div>
+                                          <div class="welfare-card__info-item">
+                                              <strong>申請方式</strong>
+                                              <span>向戶籍所在地鄉(鎮、市、區)公所提出申請</span>
+                                          </div>
+                                          <div class="welfare-card__info-item">
+                                              <strong>所需文件</strong>
+                                              <span>身分證、印章、存摺封面影本、收入及財產相關證明</span>
+                                          </div>
+                                      </div>
+                                      <div class="welfare-card__footer">
+                                          <div>
+                                              <strong>更新日期：</strong> 2024-09-10
+                                          </div>
+                                          <a href="https://www.mohw.gov.tw" target="_blank">查看詳情</a>
+                                      </div>
+                                  </div>
+  
+                                  <!-- 中低收入老人特別照顧津貼 -->
+                                  <div class="welfare-card">
+                                      <div class="welfare-card__header">
+                                          <h4>中低收入老人特別照顧津貼</h4>
+                                          <p>中央政府 - 衛生福利部</p>
+                                      </div>
+                                      <div class="welfare-card__content">
+                                          <p>為鼓勵家庭照顧中低收入且失能的老人，補助照顧者津貼，減輕照顧負擔並提升照顧品質。</p>
+                                          <div>
+                                              <span class="welfare-card__tag">經濟補助</span>
+                                              <span class="welfare-card__tag">照顧服務</span>
+                                          </div>
+                                      </div>
+                                      <div class="welfare-card__info">
+                                          <div class="welfare-card__info-item">
+                                              <strong>補助金額</strong>
+                                              <span>每月5,000元</span>
+                                          </div>
+                                          <div class="welfare-card__info-item">
+                                              <strong>申請條件</strong>
+                                              <span>年滿65歲以上，家庭總收入未達規定標準，經評估為重度失能且未接受機構安置或領取政府其他照顧費用補助</span>
+                                          </div>
+                                          <div class="welfare-card__info-item">
+                                              <strong>申請方式</strong>
+                                              <span>向戶籍所在地鄉(鎮、市、區)公所提出申請</span>
+                                          </div>
+                                          <div class="welfare-card__info-item">
+                                              <strong>審核時間</strong>
+                                              <span>約30個工作天</span>
+                                          </div>
+                                      </div>
+                                      <div class="welfare-card__footer">
+                                          <div>
+                                              <strong>更新日期：</strong> 2024-08-25
+                                          </div>
+                                          <a href="https://www.mohw.gov.tw" target="_blank">查看詳情</a>
+                                      </div>
+                                  </div>
+  
+                                  <!-- 老人醫療補助 -->
+                                  <div class="welfare-card">
+                                      <div class="welfare-card__header">
+                                          <h4>老人醫療補助</h4>
+                                          <p>中央政府 - 衛生福利部</p>
+                                      </div>
+                                      <div class="welfare-card__content">
+                                          <p>針對中低收入老人提供醫療費用補助，包含住院期間看護費用、部分負擔費用等，減輕就醫經濟負擔。</p>
+                                          <div>
+                                              <span class="welfare-card__tag">醫療補助</span>
+                                          </div>
+                                      </div>
+                                      <div class="welfare-card__info">
+                                          <div class="welfare-card__info-item">
+                                              <strong>補助金額</strong>
+                                              <span>依各縣市政府規定，最高每年補助30,000元</span>
+                                          </div>
+                                          <div class="welfare-card__info-item">
+                                              <strong>申請條件</strong>
+                                              <span>年滿65歲以上，持有效中低收入戶或低收入戶證明</span>
+                                          </div>
+                                          <div class="welfare-card__info-item">
+                                              <strong>申請方式</strong>
+                                              <span>向戶籍所在地鄉(鎮、市、區)公所提出申請</span>
+                                          </div>
+                                          <div class="welfare-card__info-item">
+                                              <strong>補助項目</strong>
+                                              <span>健保不給付醫療費用、部分負擔費用等</span>
+                                          </div>
+                                      </div>
+                                      <div class="welfare-card__footer">
+                                          <div>
+                                              <strong>更新日期：</strong> 2024-09-05
+                                          </div>
+                                          <a href="https://www.mohw.gov.tw" target="_blank">查看詳情</a>
+                                      </div>
+                                  </div>
+                              </div>
+                          </div>
+  
+                          <!-- 第二頁 -->
+                          <div id="page2" class="page">
+                              <h2>第 2 頁</h2>
+                              <div id="welfareResults">
+                                  <!-- 長照2.0照顧服務 -->
+                                  <div class="welfare-card">
+                                      <div class="welfare-card__header">
+                                          <h4>長照2.0照顧服務</h4>
+                                          <p>中央政府 - 衛生福利部</p>
+                                      </div>
+                                      <div class="welfare-card__content">
+                                          <p>長照2.0提供失能、失智、年齡達65歲以上或55歲以上山地原住民等民眾多元服務，包含居家式、社區式及機構式的服務。</p>
+                                          <div>
+                                              <span class="welfare-card__tag">居家照顧</span>
+                                              <span class="welfare-card__tag">社區照顧</span>
+                                              <span class="welfare-card__tag">機構照顧</span>
+                                          </div>
+                                      </div>
+                                      <div class="welfare-card__info">
+                                          <div class="welfare-card__info-item">
+                                              <strong>補助金額</strong>
+                                              <span>依CMS失能等級不同，每月給付額度從10,020元至36,180元不等</span>
+                                          </div>
+                                          <div class="welfare-card__info-item">
+                                              <strong>申請條件</strong>
+                                              <span>65歲以上老人、55歲以上原住民、50歲以上失智者、身心障礙者等</span>
+                                          </div>
+                                          <div class="welfare-card__info-item">
+                                              <strong>申請方式</strong>
+                                              <span>向各縣市長期照顧管理中心或撥打1966長照專線</span>
+                                          </div>
+                                          <div class="welfare-card__info-item">
+                                              <strong>自付比例</strong>
+                                              <span>一般戶16%、中低收入戶5%、低收入戶0%</span>
+                                          </div>
+                                      </div>
+                                      <div class="welfare-card__footer">
+                                          <div>
+                                              <strong>更新日期：</strong> 2024-09-15
+                                          </div>
+                                          <a href="https://1966.gov.tw" target="_blank">查看詳情</a>
+                                      </div>
+                                  </div>
+  
+                                  <!-- 長照特別扣除額 -->
+                                  <div class="welfare-card">
+                                      <div class="welfare-card__header">
+                                          <h4>長照特別扣除額</h4>
+                                          <p>中央政府 - 財政部</p>
+                                      </div>
+                                      <div class="welfare-card__content">
+                                          <p>納稅義務人、配偶或受扶養親屬符合須長期照顧的身心失能者，可申請長照特別扣除額，減輕家庭照顧負擔。</p>
+                                          <div>
+                                              <span class="welfare-card__tag">經濟補助</span>
+                                          </div>
+                                      </div>
+                                      <div class="welfare-card__info">
+                                          <div class="welfare-card__info-item">
+                                              <strong>扣除金額</strong>
+                                              <span>每人每年扣除120,000元</span>
+                                          </div>
+                                          <div class="welfare-card__info-item">
+                                              <strong>申請條件</strong>
+                                              <span>符合身心失能標準並經評估為長期需要照顧者</span>
+                                          </div>
+                                          <div class="welfare-card__info-item">
+                                              <strong>申請方式</strong>
+                                              <span>於每年5月申報綜合所得稅時一併申請</span>
+                                          </div>
+                                          <div class="welfare-card__info-item">
+                                              <strong>注意事項</strong>
+                                              <span>不可與disability免稅額重複申請</span>
+                                          </div>
+                                      </div>
+                                      <div class="welfare-card__footer">
+                                          <div>
+                                              <strong>更新日期：</strong> 2024-08-12
+                                          </div>
+                                          <a href="https://www.mof.gov.tw" target="_blank">查看詳情</a>
+                                      </div>
+                                  </div>
+  
+                                  <!-- 失能老人接受長期照顧服務補助 -->
+                                  <div class="welfare-card">
+                                      <div class="welfare-card__header">
+                                          <h4>失能老人接受長期照顧服務補助</h4>
+                                          <p>台北市 - 社會局</p>
+                                      </div>
+                                      <div class="welfare-card__content">
+                                          <p>針對設籍台北市中低收入失能老人提供長照服務補助，包含居家服務、日間照顧、喘息服務等多項服務。</p>
+                                          <div>
+                                              <span class="welfare-card__tag">居家照顧</span>
+                                              <span class="welfare-card__tag">社區照顧</span>
+                                              <span class="welfare-card__tag">喘息服務</span>
+                                          </div>
+                                      </div>
+                                      <div class="welfare-card__info">
+                                          <div class="welfare-card__info-item">
+                                              <strong>補助金額</strong>
+                                              <span>依服務項目不同，每月最高補助21,000元</span>
+                                          </div>
+                                          <div class="welfare-card__info-item">
+                                              <strong>申請條件</strong>
+                                              <span>設籍台北市，年滿65歲以上失能老人，且家庭總收入未達規定標準</span>
+                                          </div>
+                                          <div class="welfare-card__info-item">
+                                              <strong>申請方式</strong>
+                                              <span>向台北市長期照顧管理中心提出申請</span>
+                                          </div>
+                                          <div class="welfare-card__info-item">
+                                              <strong>補助項目</strong>
+                                              <span>居家服務、日間照顧、家庭托顧、輔具租借等</span>
+                                          </div>
+                                      </div>
+                                      <div class="welfare-card__footer">
+                                          <div>
+                                              <strong>更新日期：</strong> 2024-10-01
+                                          </div>
+                                          <a href="https://dosw.gov.taipei" target="_blank">查看詳情</a>
+                                      </div>
+                                  </div>
+  
+                                  <!-- 長照機構服務補助 -->
+                                  <div class="welfare-card">
+                                      <div class="welfare-card__header">
+                                          <h4>長照機構服務補助</h4>
+                                          <p>中央政府 - 衛生福利部</p>
+                                      </div>
+                                      <div class="welfare-card__content">
+                                          <p>提供入住長照機構的長輩機構式服務補助，減輕家庭經濟負擔，確保長輩獲得適當的照顧。</p>
+                                          <div>
+                                              <span class="welfare-card__tag">機構照顧</span>
+                                          </div>
+                                      </div>
+                                      <div class="welfare-card__info">
+                                          <div class="welfare-card__info-item">
+                                              <strong>補助金額</strong>
+                                              <span>依失能程度每月補助12,000元至18,300元不等</span>
+                                          </div>
+                                          <div class="welfare-card__info-item">
+                                              <strong>申請條件</strong>
+                                              <span>中度以上失能且符合特定經濟條件者</span>
+                                          </div>
+                                          <div class="welfare-card__info-item">
+                                              <strong>申請方式</strong>
+                                              <span>透過長照管理中心評估後轉介至特約機構</span>
+                                          </div>
+                                          <div class="welfare-card__info-item">
+                                              <strong>機構要求</strong>
+                                              <span>需為長照2.0特約機構才可使用補助</span>
+                                          </div>
+                                      </div>
+                                      <div class="welfare-card__footer">
+                                          <div>
+                                              <strong>更新日期：</strong> 2024-09-05
+                                          </div>
+                                          <a href="https://1966.gov.tw" target="_blank">查看詳情</a>
+                                      </div>
+                                  </div>
+  
+                                  <!-- 居家無障礙環境改善補助 -->
+                                  <div class="welfare-card">
+                                      <div class="welfare-card__header">
+                                          <h4>居家無障礙環境改善補助</h4>
+                                          <p>中央政府 - 衛生福利部</p>
+                                      </div>
+                                      <div class="welfare-card__content">
+                                          <p>為失能者提供居家無障礙環境改善服務，包含扶手安裝、防滑措施、浴廁改善等，提升居家生活品質與安全。</p>
+                                          <div>
+                                              <span class="welfare-card__tag">居家改善</span>
+                                              <span class="welfare-card__tag">輔具補助</span>
+                                          </div>
+                                      </div>
+                                      <div class="welfare-card__info">
+                                          <div class="welfare-card__info-item">
+                                              <strong>補助金額</strong>
+                                              <span>每三年最高補助45,000元</span>
+                                          </div>
+                                          <div class="welfare-card__info-item">
+                                              <strong>申請條件</strong>
+                                              <span>經長照評估核定有居家無障礙環境改善需求者</span>
+                                          </div>
+                                          <div class="welfare-card__info-item">
+                                              <strong>申請方式</strong>
+                                              <span>向戶籍所在地長照管理中心申請評估</span>
+                                          </div>
+                                          <div class="welfare-card__info-item">
+                                              <strong>補助項目</strong>
+                                              <span>扶手、防滑設施、坡道、浴廁改善等</span>
+                                          </div>
+                                      </div>
+                                      <div class="welfare-card__footer">
+                                          <div>
+                                              <strong>更新日期：</strong> 2024-08-28
+                                          </div>
+                                          <a href="https://1966.gov.tw" target="_blank">查看詳情</a>
+                                      </div>
+                                  </div>
+                              </div>
+                          </div>
+                      </div>
+  
+                      <!-- 分頁控件 -->
+                      <div class="pagination-controls text-center" style="margin-top: 30px;">
+                          <button id="prevPage" class="btn btn-secondary">上一頁</button>
+                          <button id="nextPage" class="btn btn-primary">下一頁</button>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </section>
+  
+      <!-- Footer -->
+      <footer class="footer">
+          <div class="container">
+              <div class="row">
+                  <div class="col-lg-4 col-md-6 col-sm-6">
+                      <div class="footer__widget">
+                          <h6>聯絡資訊</h6>
+                          <p>地址：104臺北市中山區敬業一路128巷41號2樓之2</p>
+                          <p>電話：(02)2533-3333</p>
+                          <p>傳真：(02)2533-9999</p>
+                          <p>郵政劃撥：19181717</p>
+                      </div>
+                  </div>
+                  <div class="col-lg-4 col-md-6 col-sm-6">
+                      <div class="footer__widget">
+                          <h6>關於我們</h6>
+                          <p>財團法人台北市老人基金會以「老吾老以及人之老」為服務宗旨，專注於協助貧困、孤苦、遭棄養的老人。</p>
+                      </div>
+                  </div>
+                  <div class="col-lg-4 col-md-12">
+                      <div class="footer__widget">
+                          <h6>訂閱電子報</h6>
+                          <p>獲取我們的最新活動和募資訊息</p>
+                          <form action="#">
+                              <input type="email" placeholder="輸入您的電子郵件" style="width: 100%; padding: 10px; margin-bottom: 10px; border: 1px solid #333; border-radius: 5px; color: #333;">
+                              <button type="submit" class="modal-btn" style="background-color: var(--primary-color); color: var(--white); border: none; padding: 10px 28px; border-radius: 30px; cursor: pointer;">訂閱</button>
+                          </form>
+                      </div>
+                  </div>
+              </div>
+              <div class="footer__copyright">
+                  <div class="row">
+                      <div class="col-lg-12 text-center">
+                          <p>76.7.20北市社四字第33240號</p>
+                          <p>Copyright © 2025 90.am rights reserved.</p>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </footer>
+  
+      <script>
+      document.addEventListener("DOMContentLoaded", function() {
+          let currentPage = 1;
+          const totalPages = 2;
+          const prevButton = document.getElementById("prevPage");
+          const nextButton = document.getElementById("nextPage");
+  
+          function showPage(pageNumber) {
+              for (let i = 1; i <= totalPages; i++) {
+                  const page = document.getElementById("page" + i);
+                  if (i === pageNumber) {
+                      page.classList.add("active");
+                      page.style.display = "block";
+                  } else {
+                      page.classList.remove("active");
+                      page.style.display = "none";
+                  }
+              }
+              // 更新按鈕狀態
+              prevButton.disabled = (pageNumber === 1);
+              nextButton.disabled = (pageNumber === totalPages);
+          }
+  
+          prevButton.addEventListener("click", function() {
+              if (currentPage > 1) {
+                  currentPage--;
+                  showPage(currentPage);
+              }
+          });
+  
+          nextButton.addEventListener("click", function() {
+              if (currentPage < totalPages) {
+                  currentPage++;
+                  showPage(currentPage);
+              }
+          });
+  
+          // 初始顯示第一頁
+          showPage(currentPage);
+      });
+      </script>
+  </body>
+  </html>

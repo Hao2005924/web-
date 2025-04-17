@@ -1,0 +1,488 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="keywords" content="90.am‧老人基金會‧老吾老以及人之老‧老人服務‧基金會分組‧服務項目">
+    <title>服務分組 | 財團法人台北市老人基金會</title>
+    
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@200;300;400;600;900&display=swap" rel="stylesheet">
+
+    <!-- Css Styles -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/4.6.2/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/elegant-icons/1.0.0/style.min.css" />
+
+    <style>
+        /* 主題顏色定義 - 參考Ogani樣式但調整為適合老人基金會 */
+        :root {
+            --primary-color: #7fad39; /* Ogani主色 */
+            --secondary-color: #2a4365;
+            --accent-color: #4a5568;
+            --text-color: #2d3748;
+            --light-bg: #f5f5f5;
+            --white: #ffffff;
+            --shadow-color: rgba(0, 0, 0, 0.1);
+            --footer-bg: #2a4365;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: "Microsoft JhengHei", "Cairo", sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            background-color: var(--light-bg);
+        }
+
+        /* 基本連結樣式 */
+        a {
+            text-decoration: none;
+            color: var(--text-color);
+            transition: all 0.3s;
+        }
+
+        a:hover {
+            color: var(--primary-color);
+            text-decoration: none;
+        }
+
+        /* 標題樣式 */
+        h1, h2, h3, h4, h5, h6 {
+            font-weight: 600;
+            margin-bottom: 15px;
+        }
+
+        /* 頂部信息欄 */
+        .header__top {
+            background: var(--secondary-color);
+            padding: 10px 0;
+        }
+
+        .header__top__left {
+            padding: 6px 0;
+        }
+
+        .header__top__left p {
+            color: var(--white);
+            margin-bottom: 0;
+        }
+
+        .header__top__right {
+            text-align: right;
+            padding: 6px 0;
+        }
+
+        .header__top__right a {
+            color: var(--white);
+            margin-right: 15px;
+            font-size: 14px;
+        }
+
+        .header__top__right a:hover {
+            color: var(--primary-color);
+        }
+
+        /* Logo區塊 */
+        .header__logo {
+            padding: 15px 0;
+        }
+
+        .header__logo h1 {
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--text-color);
+            margin-bottom: 0;
+        }
+
+        /* 返回按鈕 */
+        .back-button {
+            display: inline-block;
+            padding: 8px 20px;
+            background-color: var(--secondary-color);
+            color: var(--white);
+            border-radius: 4px;
+            margin-bottom: 20px;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+
+        .back-button:hover {
+            background-color: var(--primary-color);
+            color: var(--white);
+            text-decoration: none;
+        }
+
+        .back-button i {
+            margin-right: 5px;
+        }
+
+        /* 頁面標題 */
+        .page-title {
+            background: var(--white);
+            padding: 20px 30px;
+            border-radius: 5px;
+            box-shadow: 0 2px 10px var(--shadow-color);
+            margin-bottom: 30px;
+        }
+
+        .page-title h2 {
+            color: var(--text-color);
+            margin-bottom: 0;
+            font-size: 24px;
+        }
+
+        /* 側邊欄區域 */
+        .sidebar {
+            background: var(--white);
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 2px 10px var(--shadow-color);
+            margin-bottom: 30px;
+        }
+
+        .sidebar__title {
+            font-size: 18px;
+            color: var(--text-color);
+            font-weight: 700;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid #e5e5e5;
+        }
+
+        .sidebar__links p {
+            margin-bottom: 10px;
+        }
+
+        .sidebar__links a {
+            color: var(--accent-color);
+            transition: all 0.3s;
+        }
+
+        .sidebar__links a:hover {
+            color: var(--primary-color);
+        }
+
+        .sidebar__links i {
+            margin-right: 5px;
+        }
+
+        /* 服務分組卡片 */
+        .group-card {
+            background: var(--white);
+            border-radius: 5px;
+            box-shadow: 0 2px 10px var(--shadow-color);
+            padding: 20px;
+            margin-bottom: 20px;
+            transition: all 0.3s;
+        }
+
+        .group-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .group-card__title {
+            font-size: 20px;
+            color: var(--secondary-color);
+            font-weight: 700;
+            margin-bottom: 15px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid #e5e5e5;
+        }
+
+        .group-card__description {
+            font-size: 16px;
+            color: var(--accent-color);
+            margin-bottom: 15px;
+        }
+
+        .group-card__services {
+            list-style-type: none;
+            padding-left: 0;
+        }
+
+        .group-card__services li {
+            margin-bottom: 10px;
+            padding-left: 20px;
+            position: relative;
+        }
+
+        .group-card__services li:before {
+            content: "•";
+            color: var(--primary-color);
+            font-size: 20px;
+            position: absolute;
+            left: 0;
+            top: -2px;
+        }
+
+        /* Footer區塊 */
+        .footer {
+            background: var(--footer-bg);
+            padding: 70px 0 0;
+            color: #b5b5b5;
+            margin-top: 50px;
+        }
+
+        .footer__widget {
+            margin-bottom: 30px;
+        }
+
+        .footer__widget h6 {
+            color: var(--white);
+            font-size: 16px;
+            margin-bottom: 20px;
+        }
+
+        .footer__widget p {
+            margin-bottom: 15px;
+        }
+
+        .footer__copyright {
+            padding: 20px 0;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            text-align: center;
+            margin-top: 40px;
+        }
+
+        .footer__copyright p {
+            margin-bottom: 0;
+        }
+
+        /* 響應式設計 */
+        @media (max-width: 992px) {
+            .sidebar {
+                margin-bottom: 30px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .sidebar {
+                margin-bottom: 30px;
+            }
+            
+            .page-title h2 {
+                font-size: 20px;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .header__logo h1 {
+                font-size: 20px;
+            }
+            
+            .group-card {
+                padding: 15px;
+            }
+            
+            .group-card__title {
+                font-size: 18px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- 頂部信息欄 -->
+    <div class="header__top">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6 col-md-6">
+                    <div class="header__top__left">
+                        <p>老吾老以及人之老，用愛與關懷，形成善的循環</p>
+                    </div>
+                </div>
+                <div class="col-lg-6 col-md-6">
+                    <div class="header__top__right">
+                        <a href="#"><i class="fa fa-envelope"></i> info@old.org.tw</a>
+                        <a href="#"><i class="fa fa-phone"></i> (02)2533-3333</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Header區域 -->
+    <header class="header">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="header__logo text-center">
+                        <h1>財團法人台北市老人基金會</h1>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- 主要內容區 -->
+    <section class="groups-section">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <a href="main.htm" class="back-button"><i class="fa fa-arrow-left"></i> 回到首頁</a>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="page-title">
+                        <h2>服務分組 - 老人基金會工作小組</h2>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <!-- 側邊欄 -->
+                <div class="col-lg-3">
+                    <div class="sidebar">
+                        <div class="sidebar__title">快速導覽</div>
+                        <div class="sidebar__links">
+                            <p><a href="#foster-group"><i class="fa fa-chevron-right"></i> 助養組</a></p>
+                            <p><a href="#protection-group"><i class="fa fa-chevron-right"></i> 防護組</a></p>
+                            <p><a href="#search-group"><i class="fa fa-chevron-right"></i> 協尋組</a></p>
+                            <p><a href="#rescue-group"><i class="fa fa-chevron-right"></i> 救援組</a></p>
+                            <p><a href="#service-group"><i class="fa fa-chevron-right"></i> 服務組</a></p>
+                        </div>
+                    </div>
+
+                    <div class="sidebar">
+                        <div class="sidebar__title">相關資訊</div>
+                        <div class="sidebar__links">
+                            <p><a href="https://www.mohw.gov.tw/" target="_blank"><i class="fa fa-external-link-alt"></i> 衛生福利部</a></p>
+                            <p><a href="https://dpws.gov.taipei/" target="_blank"><i class="fa fa-external-link-alt"></i> 台北市社會局</a></p>
+                            <p><a href="https://www.sw.ntpc.gov.tw/" target="_blank"><i class="fa fa-external-link-alt"></i> 新北市社會局</a></p>
+                            <p><a href="https://welfarelife.pwr.gov.tw//" target="_blank"><i class="fa fa-external-link-alt"></i> 全國福利入口網</a></p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 主要內容區 -->
+                <div class="col-lg-9">
+                    <!-- 助養組 -->
+                    <div class="group-card" id="foster-group">
+                        <div class="group-card__title">
+                            <i class="fa fa-heart"></i> 助養組 - 照顧貧苦無依老人
+                        </div>
+                        <div class="group-card__description">
+                            本組致力於照顧貧苦無依老人，提供生活支持與關懷，讓長者感受社會温暖。
+                        </div>
+                        <ul class="group-card__services">
+                            <li><strong>助養老人：</strong>每月定期補助貧苦無依老人生活費用。</li>
+                            <li><strong>急難救助：</strong>依個案狀況救助急難之貧苦無依老人。</li>
+                            <li><strong>關懷訪視：</strong>每月定期依需要探望並致送食品物品。</li>
+                            <li><strong>其他服務：</strong>環境整理、醫療轉介及其他困難事務。</li>
+                            <li><strong>年度活動：</strong>辦理寒冬送暖等特定節日之關懷活動。</li>
+                        </ul>
+                    </div>
+
+                    <!-- 防護組 -->
+                    <div class="group-card" id="protection-group">
+                        <div class="group-card__title">
+                            <i class="fa fa-shield-alt"></i> 防護組 - 防制保護受虐老人
+                        </div>
+                        <div class="group-card__description">
+                            本組專注於防制老人受虐事件，保護弱勢長者免於傷害，建立尊老敬老的社會氛圍。
+                        </div>
+                        <ul class="group-card__services">
+                            <li><strong>防制宣導：</strong>宣導對老年人應有之尊重與關懷。</li>
+                            <li><strong>義工培訓：</strong>辦理老人保護義工之訓練、講習。</li>
+                            <li><strong>諮詢協助：</strong>法律及其他老人問題諮詢及協助。</li>
+                            <li><strong>個案訪查：</strong>個案訪查、溝通、協談、調解。</li>
+                            <li><strong>持續關懷：</strong>個案持續問安連繫、觀察保護。</li>
+                            <li><strong>緊急救援：</strong>緊急個案二十四小時立即救援庇護。</li>
+                        </ul>
+                    </div>
+
+                    <!-- 協尋組 -->
+                    <div class="group-card" id="search-group">
+                        <div class="group-card__title">
+                            <i class="fa fa-search"></i> 協尋組 - 協助尋找迷途老人
+                        </div>
+                        <div class="group-card__description">
+                            本組專門協助尋找迷途老人，建立預警機制，確保長者能夠安全回家。
+                        </div>
+                        <ul class="group-card__services">
+                            <li><strong>預警機制：</strong>特徵建檔與比對，協助迷途老人後送。</li>
+                            <li><strong>協尋服務：</strong>媒體宣導與訪查、協助老人返家善後。</li>
+                        </ul>
+                    </div>
+
+                    <!-- 救援組 -->
+                    <div class="group-card" id="rescue-group">
+                        <div class="group-card__title">
+                            <i class="fa fa-ambulance"></i> 救援組 - 機動救援急難老人
+                        </div>
+                        <div class="group-card__description">
+                            本組提供二十四小時機動救援服務，為急難老人提供即時協助與支援。
+                        </div>
+                        <ul class="group-card__services">
+                            <li><strong>訊號監控：</strong>監控獨居、病患老人求救訊號。</li>
+                            <li><strong>即時救援：</strong>二十四小時立即救援急難老人。</li>
+                            <li><strong>居家問安：</strong>老人居家問安及協助緊急事件。</li>
+                            <li><strong>公益支援：</strong>協助支援各公益團體緊急事項。</li>
+                        </ul>
+                    </div>
+
+                    <!-- 服務組 -->
+                    <div class="group-card" id="service-group">
+                        <div class="group-card__title">
+                            <i class="fa fa-hands-helping"></i> 服務組 - 協助服務一般老人
+                        </div>
+                        <div class="group-card__description">
+                            本組為一般老人提供各項服務與活動，增進長者生活品質與身心健康。
+                        </div>
+                        <ul class="group-card__services">
+                            <li><strong>健康活動：</strong>辦理老人健康活動。</li>
+                            <li><strong>資訊諮詢：</strong>提供老人資訊諮詢。</li>
+                            <li><strong>研究計劃：</strong>老人問題研究計劃。</li>
+                            <li><strong>協助服務：</strong>老人相關協助服務。</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4 col-md-6 col-sm-6">
+                    <div class="footer__widget">
+                        <h6>聯絡資訊</h6>
+                        <p>地址：104臺北市中山區敬業一路128巷41號2樓之2</p>
+                        <p>電話：(02)2533-3333</p>
+                        <p>傳真：(02)2533-9999</p>
+                        <p>郵政劃撥：19181717</p>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6 col-sm-6">
+                    <div class="footer__widget">
+                        <h6>關於我們</h6>
+                        <p>財團法人台北市老人基金會以「老吾老以及人之老」為服務宗旨，專注於協助貧困、孤苦、遭棄養的老人。</p>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-12">
+                    <div class="footer__widget">
+                        <h6>訂閱電子報</h6>
+                        <p>獲取我們的最新活動和募資訊息</p>
+                        <form action="#">
+                            <input type="email" placeholder="輸入您的電子郵件" style="width: 100%; padding: 10px; margin-bottom: 10px; border: 1px solid #333; border-radius: 5px;">
+                            <button type="submit" class="filter-btn" style="background: var(--primary-color); color: var(--white); border: none; padding: 8px 20px; border-radius: 5px; font-weight: 600; cursor: pointer; width: 100%; transition: all 0.3s;">訂閱</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div class="footer__copyright">
+                <div class="row">
+                    <div class="col-lg-12 text-center">
+                        <p>76.7.20北市社四字第33240號</p>
+                        <p>Copyright © 2025 90.am rights reserved.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>

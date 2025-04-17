@@ -1,0 +1,862 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="keywords" content="90.am‧老人基金會‧老吾老以及人之老‧老人服務‧長期照顧‧安養機構‧老人住宅">
+    <title>老人長期照顧設施查詢 - 財團法人台北市老人基金會</title>
+    
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@200;300;400;600;900&display=swap" rel="stylesheet">
+
+    <!-- Css Styles -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/4.6.2/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/elegant-icons/1.0.0/style.min.css" />
+
+    <style>
+        /* 主題顏色定義 - 參考Ogani樣式但調整為適合老人基金會 */
+        :root {
+            --primary-color: #7fad39; /* Ogani主色 */
+            --secondary-color: #2a4365;
+            --accent-color: #4a5568;
+            --text-color: #2d3748;
+            --light-bg: #f5f5f5;
+            --white: #ffffff;
+            --shadow-color: rgba(0, 0, 0, 0.1);
+            --footer-bg: #2a4365;
+            --border-color: #e8e8e8;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: "Microsoft JhengHei", "Cairo", sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            background-color: var(--light-bg);
+        }
+
+        /* 基本連結樣式 */
+        a {
+            text-decoration: none;
+            color: var(--text-color);
+            transition: all 0.3s;
+        }
+
+        a:hover {
+            color: var(--primary-color);
+            text-decoration: none;
+        }
+
+        /* 標題樣式 */
+        h1, h2, h3, h4, h5, h6 {
+            font-weight: 600;
+            margin-bottom: 15px;
+        }
+
+        /* 返回按鈕 */
+        .back-button {
+            display: inline-flex;
+            align-items: center;
+            padding: 8px 15px;
+            background-color: var(--secondary-color);
+            color: var(--white);
+            border-radius: 5px;
+            font-weight: 500;
+            margin-bottom: 20px;
+            transition: all 0.3s;
+        }
+
+        .back-button:hover {
+            background-color: var(--primary-color);
+            color: var(--white);
+        }
+
+        .back-button i {
+            margin-right: 5px;
+        }
+
+        /* 頂部信息欄 */
+        .header__top {
+            background: var(--secondary-color);
+            padding: 10px 0;
+        }
+
+        .header__top__left {
+            padding: 6px 0;
+        }
+
+        .header__top__left p {
+            color: var(--white);
+            margin-bottom: 0;
+        }
+
+        .header__top__right {
+            text-align: right;
+            padding: 6px 0;
+        }
+
+        .header__top__right a {
+            color: var(--white);
+            margin-right: 15px;
+            font-size: 14px;
+        }
+
+        .header__top__right a:hover {
+            color: var(--primary-color);
+        }
+
+        /* Page Header */
+        .page-header {
+            background-color: var(--primary-color);
+            padding: 30px 0;
+            margin-bottom: 40px;
+        }
+
+        .page-header h2 {
+            color: var(--white);
+            margin-bottom: 0;
+            font-weight: 700;
+        }
+
+        /* 側邊欄篩選 */
+        .sidebar {
+            background-color: var(--white);
+            padding: 25px;
+            border-radius: 5px;
+            box-shadow: 0 5px 15px var(--shadow-color);
+        }
+
+        .sidebar__item {
+            margin-bottom: 30px;
+        }
+
+        .sidebar__item:last-child {
+            margin-bottom: 0;
+        }
+
+        .sidebar__item h4 {
+            font-size: 18px;
+            font-weight: 700;
+            margin-bottom: 15px;
+        }
+
+        .sidebar__item select {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid var(--border-color);
+            border-radius: 5px;
+            font-size: 15px;
+            color: var(--text-color);
+            margin-bottom: 15px;
+        }
+
+        .sidebar__item select:focus {
+            border-color: var(--primary-color);
+            outline: none;
+        }
+
+        .sidebar__item button {
+            width: 100%;
+            padding: 10px;
+            background-color: var(--primary-color);
+            border: none;
+            color: var(--white);
+            font-weight: 600;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .sidebar__item button:hover {
+            background-color: #5c8129;
+        }
+
+        /* 表格樣式 */
+        .facility-table {
+            width: 100%;
+            margin-bottom: 30px;
+            background-color: var(--white);
+            border-radius: 5px;
+            box-shadow: 0 5px 15px var(--shadow-color);
+            overflow: hidden;
+        }
+
+        .facility-table table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .facility-table th, 
+        .facility-table td {
+            padding: 12px 15px;
+            text-align: center;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .facility-table th {
+            background-color: var(--secondary-color);
+            color: var(--white);
+            font-weight: 600;
+            white-space: nowrap;
+        }
+
+        .facility-table tbody tr:hover {
+            background-color: rgba(127, 173, 57, 0.1);
+        }
+
+        .facility-table tbody tr:last-child td {
+            border-bottom: none;
+        }
+
+        /* 輕量型表格 */
+        .light-table {
+            margin-bottom: 30px;
+        }
+
+        .light-table table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .light-table th, 
+        .light-table td {
+            padding: 8px 12px;
+            text-align: center;
+            border: 1px solid var(--border-color);
+        }
+
+        .light-table th {
+            background-color: #f1f7e9;
+            color: var(--text-color);
+            font-weight: 600;
+        }
+
+        /* 統計卡片 */
+        .stats-card {
+            background-color: var(--white);
+            border-radius: 5px;
+            box-shadow: 0 5px 15px var(--shadow-color);
+            padding: 20px;
+            margin-bottom: 25px;
+            text-align: center;
+        }
+
+        .stats-card h3 {
+            color: var(--secondary-color);
+            font-size: 18px;
+            margin-bottom: 10px;
+        }
+
+        .stats-card .number {
+            font-size: 28px;
+            font-weight: 700;
+            color: var(--primary-color);
+            margin-bottom: 5px;
+        }
+
+        .stats-card p {
+            color: var(--accent-color);
+            margin-bottom: 0;
+        }
+
+        /* 地圖容器 */
+        .map-container {
+            background-color: var(--white);
+            border-radius: 5px;
+            box-shadow: 0 5px 15px var(--shadow-color);
+            padding: 20px;
+            margin-bottom: 30px;
+        }
+
+        .map-container h4 {
+            font-size: 18px;
+            margin-bottom: 15px;
+            color: var(--secondary-color);
+        }
+
+        .map-iframe {
+            width: 100%;
+            height: 450px;
+            border: none;
+            border-radius: 5px;
+        }
+
+        /* 設施卡片 */
+        .facility-card {
+            background-color: var(--white);
+            border-radius: 5px;
+            box-shadow: 0 5px 15px var(--shadow-color);
+            padding: 25px;
+            margin-bottom: 25px;
+            transition: all 0.3s;
+        }
+
+        .facility-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .facility-card__header {
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 15px;
+            margin-bottom: 15px;
+        }
+
+        .facility-card__header h4 {
+            font-size: 20px;
+            font-weight: 700;
+            margin-bottom: 5px;
+        }
+
+        .facility-card__header p {
+            color: var(--accent-color);
+            margin-bottom: 0;
+        }
+
+        .facility-card__content {
+            margin-bottom: 15px;
+        }
+
+        .facility-card__content p {
+            margin-bottom: 10px;
+        }
+
+        .facility-card__info {
+            display: flex;
+            flex-wrap: wrap;
+            margin-bottom: 15px;
+        }
+
+        .facility-card__info-item {
+            flex: 0 0 50%;
+            max-width: 50%;
+            margin-bottom: 10px;
+        }
+
+        .facility-card__info-item strong {
+            display: block;
+            margin-bottom: 3px;
+        }
+
+        .facility-card__footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-top: 15px;
+            border-top: 1px solid var(--border-color);
+        }
+
+        .facility-card__footer a {
+            display: inline-block;
+            padding: 8px 20px;
+            background-color: var(--primary-color);
+            color: var(--white);
+            border-radius: 30px;
+            font-size: 14px;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+
+        .facility-card__footer a:hover {
+            background-color: #5c8129;
+            color: var(--white);
+        }
+
+        .facility-card__tag {
+            display: inline-block;
+            padding: 3px 10px;
+            background-color: #eaf7dd;
+            color: var(--primary-color);
+            border-radius: 20px;
+            font-size: 12px;
+            margin-right: 5px;
+            margin-bottom: 5px;
+        }
+
+        /* 分頁控件 */
+        .pagination {
+            display: flex;
+            justify-content: center;
+            margin-top: 40px;
+        }
+
+        .pagination a {
+            display: inline-block;
+            width: 40px;
+            height: 40px;
+            border: 1px solid var(--border-color);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-color);
+            margin-right: 10px;
+            transition: all 0.3s;
+        }
+
+        .pagination a:hover,
+        .pagination a.active {
+            background-color: var(--primary-color);
+            border-color: var(--primary-color);
+            color: var(--white);
+        }
+
+        /* Footer區塊 */
+        .footer {
+            background: var(--footer-bg);
+            padding: 70px 0 0;
+            color: #b5b5b5;
+        }
+
+        .footer__widget {
+            margin-bottom: 30px;
+        }
+
+        .footer__widget h6 {
+            color: var(--white);
+            font-size: 16px;
+            margin-bottom: 20px;
+        }
+
+        .footer__widget p {
+            margin-bottom: 15px;
+        }
+
+        .footer__copyright {
+            padding: 20px 0;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            text-align: center;
+            margin-top: 40px;
+        }
+
+        .footer__copyright p {
+            margin-bottom: 0;
+        }
+
+        /* 標籤樣式 */
+        .care-type-tag {
+            display: inline-block;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 13px;
+            font-weight: 600;
+            margin-right: 8px;
+            margin-bottom: 8px;
+        }
+
+        .care-type-tag.long-term {
+            background-color: #e8f5e9;
+            color: #2e7d32;
+        }
+
+        .care-type-tag.nursing {
+            background-color: #e3f2fd;
+            color: #1565c0;
+        }
+
+        .care-type-tag.dementia {
+            background-color: #fff3e0;
+            color: #e65100;
+        }
+
+        .care-type-tag.sanctuary {
+            background-color: #f3e5f5;
+            color: #6a1b9a;
+        }
+
+        /* 響應式設計 */
+        @media (max-width: 992px) {
+            .facility-card__info-item {
+                flex: 0 0 100%;
+                max-width: 100%;
+            }
+            
+            .facility-table {
+                overflow-x: auto;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .sidebar {
+                margin-bottom: 30px;
+            }
+
+            .facility-card__footer {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .facility-card__footer a {
+                margin-top: 15px;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .page-header h2 {
+                font-size: 24px;
+            }
+
+            .facility-card__header h4 {
+                font-size: 18px;
+            }
+            
+            .stats-card .number {
+                font-size: 24px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- 頂部信息欄 -->
+    <div class="header__top">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6 col-md-6">
+                    <div class="header__top__left">
+                        <p>老吾老以及人之老，用愛與關懷，形成善的循環</p>
+                    </div>
+                </div>
+                <div class="col-lg-6 col-md-6">
+                    <div class="header__top__right">
+                        <a href="#"><i class="fa fa-envelope"></i> info@old.org.tw</a>
+                        <a href="#"><i class="fa fa-phone"></i> (02)2533-3333</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 頁面標題 -->
+    <section class="page-header">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 text-center">
+                    <h2>老人長期照顧設施查詢</h2>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 主要內容區域 -->
+    <section class="facility-section">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <a href="main.htm" class="back-button"><i class="fa fa-arrow-left"></i> 回到首頁</a>
+                </div>
+            </div>
+            
+            <!-- 統計概覽 -->
+            <div class="row mb-4">
+                <div class="col-lg-3 col-md-6">
+                    <div class="stats-card">
+                        <h3>全國機構總數</h3>
+                        <div class="number">1,050</div>
+                        <p>家照顧機構</p>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <div class="stats-card">
+                        <h3>可供進住人數</h3>
+                        <div class="number">59,929</div>
+                        <p>床位數</p>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <div class="stats-card">
+                        <h3>實際進住人數</h3>
+                        <div class="number">50,261</div>
+                        <p>入住人數</p>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <div class="stats-card">
+                        <h3>入住率</h3>
+                        <div class="number">83.9%</div>
+                        <p>全國平均</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="row">
+                <!-- 側邊欄篩選 -->
+                <div class="col-lg-3 col-md-4">
+                    <div class="sidebar">
+                        <div class="sidebar__item">
+                            <h4>設施篩選</h4>
+                            <div class="sidebar__item">
+                                <select id="region">
+                                    <option value="">-- 選擇縣市 --</option>
+                                    <option value="taipei">臺北市</option>
+                                    <option value="newtaipei">新北市</option>
+                                    <option value="taoyuan">桃園市</option>
+                                    <option value="taichung">台中市</option>
+                                    <option value="tainan">台南市</option>
+                                    <option value="kaohsiung">高雄市</option>
+                                    <option value="all">全部縣市</option>
+                                </select>
+                            </div>
+                            <div class="sidebar__item">
+                                <select id="facilityType">
+                                    <option value="">-- 機構類型 --</option>
+                                    <option value="longterm">長期照護型</option>
+                                    <option value="nursing">養護型</option>
+                                    <option value="dementia">失智照顧型</option>
+                                    <option value="sanctuary">安養型</option>
+                                    <option value="all">全部類型</option>
+                                </select>
+                            </div>
+                            <div class="sidebar__item">
+                                <select id="ownership">
+                                    <option value="">-- 機構性質 --</option>
+                                    <option value="public">公立</option>
+                                    <option value="private">私立</option>
+                                    <option value="all">全部</option>
+                                </select>
+                            </div>
+                            <button id="filterBtn">查詢設施</button>
+                        </div>
+                        <div class="sidebar__item">
+                            <h4>快速導覽</h4>
+                            <ul style="list-style-type: none; padding-left: 0;">
+                                <li style="margin-bottom: 10px;"><a href="#overviewSection">全國機構概況</a></li>
+                                <li style="margin-bottom: 10px;"><a href="#mapSection">機構分布地圖</a></li>
+                                <li style="margin-bottom: 10px;"><a href="#tableSection">詳細數據表格</a></li>
+                                <li style="margin-bottom: 10px;"><a href="#recommendedSection">推薦機構</a></li>
+                                <li><a href="#faqSection">常見問答</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- 主要內容 -->
+                <div class="col-lg-9 col-md-8">
+                    <!-- 概覽區塊 -->
+                    <div id="overviewSection" class="mb-5">
+                        <h3 class="mb-4">全國老人長期照顧、安養機構與老人公寓、老人住宅概況</h3>
+                        <p>本頁面提供全國各縣市老人長期照顧、安養機構與老人公寓、老人住宅的最新概況資料。根據衛生福利部2025年1月統計，全國共有1,050家機構，可供進住人數為59,929人，實際進住人數為50,261人。以下為各類型機構的概況：</p>
+                        
+                        <div class="light-table mt-4">
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>機構類型</th>
+                                        <th>機構數</th>
+                                        <th>可供進住人數</th>
+                                        <th>實際進住人數</th>
+                                        <th>入住率</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>長期照護型</td>
+                                        <td>987家</td>
+                                        <td>50,996床</td>
+                                        <td>44,130人</td>
+                                        <td>86.5%</td>
+                                    </tr>
+                                    <tr>
+                                        <td>養護型</td>
+                                        <td>1,221家</td>
+                                        <td>50,996床</td>
+                                        <td>44,130人</td>
+                                        <td>86.5%</td>
+                                    </tr>
+                                    <tr>
+                                        <td>失智照顧型</td>
+                                        <td>266家</td>
+                                        <td>3,014床</td>
+                                        <td>2,002人</td>
+                                        <td>66.4%</td>
+                                    </tr>
+                                    <tr>
+                                        <td>安養型</td>
+                                        <td>132家</td>
+                                        <td>5,919床</td>
+                                        <td>4,129人</td>
+                                        <td>69.8%</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                                    
+                    <!-- 表格區塊 -->
+                    <div id="tableSection" class="facility-table">
+                        <h4 class="mb-3">全國各縣市老人照顧機構數據明細</h4>
+                        <div style="overflow-x: auto;">
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>縣市</th>
+                                        <th>機構總數</th>
+                                        <th>長期照護型</th>
+                                        <th>養護型</th>
+                                        <th>失智照顧型</th>
+                                        <th>安養型</th>
+                                        <th>可供進住人數</th>
+                                        <th>實際進住人數</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>新北市</td>
+                                        <td>211</td>
+                                        <td>203</td>
+                                        <td>20</td>
+                                        <td>18</td>
+                                        <td>84</td>
+                                        <td>10,867</td>
+                                        <td>9,226</td>
+                                    </tr>
+                                    <tr>
+                                        <td>臺北市</td>
+                                        <td>94</td>
+                                        <td>89</td>
+                                        <td>151</td>
+                                        <td>112</td>
+                                        <td>0</td>
+                                        <td>5,192</td>
+                                        <td>4,375</td>
+                                    </tr>
+                                    <tr>
+                                        <td>桃園市</td>
+                                        <td>66</td>
+                                        <td>62</td>
+                                        <td>78</td>
+                                        <td>0</td>
+                                        <td>0</td>
+                                        <td>3,907</td>
+                                        <td>3,287</td>
+                                    </tr>
+                                    <tr>
+                                        <td>臺中市</td>
+                                        <td>65</td>
+                                        <td>62</td>
+                                        <td>100</td>
+                                        <td>0</td>
+                                        <td>0</td>
+                                        <td>4,000</td>
+                                        <td>3,477</td>
+                                    </tr>
+                                    <tr>
+                                        <td>臺南市</td>
+                                        <td>113</td>
+                                        <td>110</td>
+                                        <td>5</td>
+                                        <td>0</td>
+                                        <td>0</td>
+                                        <td>5,823</td>
+                                        <td>4,949</td>
+                                    </tr>
+                                    <tr>
+                                        <td>高雄市</td>
+                                        <td>152</td>
+                                        <td>149</td>
+                                        <td>0</td>
+                                        <td>0</td>
+                                        <td>0</td>
+                                        <td>8,150</td>
+                                        <td>7,031</td>
+                                    </tr>
+                                    <tr>
+                                        <td>宜蘭縣</td>
+                                        <td>38</td>
+                                        <td>36</td>
+                                        <td>151</td>
+                                        <td>0</td>
+                                        <td>0</td>
+                                        <td>2,332</td>
+                                        <td>1,941</td>
+                                    </tr>
+                                    <tr>
+                                        <td>彰化縣</td>
+                                        <td>51</td>
+                                        <td>39</td>
+                                        <td>444</td>
+                                        <td>0</td>
+                                        <td>0</td>
+                                        <td>3,424</td>
+                                        <td>2,794</td>
+                                    </tr>
+                                    <tr>
+                                        <td>嘉義市</td>
+                                        <td>15</td>
+                                        <td>11</td>
+                                        <td>12</td>
+                                        <td>0</td>
+                                        <td>0</td>
+                                        <td>1,320</td>
+                                        <td>1,071</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+    <!-- Google Map 區塊 -->
+    <section class="map-section">
+        <div class="container">
+            <div class="section-title">
+                <h2>全國長照機構分布地圖</h2>
+            </div>
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="map-container">
+                        <h4>查看長照機構分布</h4>
+                        <p>點擊下方按鈕，開啟衛生福利部長照服務資訊公開平台，瀏覽全國長照機構分布地圖。</p>
+                        <a href="https://ltcpap.mohw.gov.tw/public/index.html" target="_blank" class="btn" style="display: inline-block; padding: 8px 20px; background-color: var(--primary-color); color: var(--white); border-radius: 5px; text-decoration: none;">開啟地圖</a>
+                    </div>
+                    <div class="text-center mt-4">
+                        <p><i class="fa fa-map-marker-alt mr-2"></i>地址：104臺北市中山區敬業一路128巷41號2樓之2</p>
+                        <p><i class="fa fa-subway mr-2"></i>交通：捷運劍南路站步行約10分鐘</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4 col-md-6 col-sm-6">
+                    <div class="footer__widget">
+                        <h6>聯絡資訊</h6>
+                        <p>地址：104臺北市中山區敬業一路128巷41號2樓之2</p>
+                        <p>電話：(02)2533-3333</p>
+                        <p>傳真：(02)2533-9999</p>
+                        <p>郵政劃撥：19181717</p>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6 col-sm-6">
+                    <div class="footer__widget">
+                        <h6>關於我們</h6>
+                        <p>財團法人台北市老人基金會以「老吾老以及人之老」為服務宗旨，專注於協助貧困、孤苦、遭棄養的老人。</p>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-12">
+                    <div class="footer__widget">
+                        <h6>訂閱電子報</h6>
+                        <p>獲取我們的最新活動和募資訊息</p>
+                        <form action="#">
+                            <input type="email" placeholder="輸入您的電子郵件" style="width: 100%; padding: 10px; margin-bottom: 10px; border: 1px solid #333; border-radius: 5px;">
+                            <button type="submit" class="modal-btn">訂閱</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div class="footer__copyright">
+                <div class="row">
+                    <div class="col-lg-12 text-center">
+                        <p>76.7.20北市社四字第33240號</p>
+                        <p>Copyright © 2025 90.am rights reserved.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>

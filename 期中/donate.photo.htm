@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="keywords" content="90.am‧老人基金會‧老吾老以及人之老‧老人服務‧身障福利‧身障補助">
+    <title> 長者服務與資源——老人救援與協尋 | 財團法人台北市老人基金會</title>
+    
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@200;300;400;600;900&display=swap" rel="stylesheet">
+
+    <!-- Css Styles -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/4.6.2/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/elegant-icons/1.0.0/style.min.css" />
+
+    <style>
+        /* 主題顏色定義 - 參考Ogani樣式但調整為適合老人基金會 */
+        :root {
+            --primary-color: #7fad39; /* Ogani主色 */
+            --secondary-color: #2a4365;
+            --accent-color: #4a5568;
+            --text-color: #2d3748;
+            --light-bg: #f5f5f5;
+            --white: #ffffff;
+            --shadow-color: rgba(0, 0, 0, 0.1);
+            --footer-bg: #2a4365;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: "Microsoft JhengHei", "Cairo", sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            background-color: var(--light-bg);
+        }
+
+        /* 頂部信息欄 */
+        .header__top {
+            background: var(--secondary-color);
+            padding: 10px 0;
+        }
+
+        .header__top__left {
+            padding: 6px 0;
+        }
+
+        .header__top__left p {
+            color: var(--white);
+            margin-bottom: 0;
+        }
+
+        .header__top__right {
+            text-align: right;
+            padding: 6px 0;
+        }
+
+        .header__top__right a {
+            color: var(--white);
+            margin-right: 15px;
+            font-size: 14px;
+        }
+
+        .header__top__right a:hover {
+            color: var(--primary-color);
+        }
+
+        /* Logo區塊 */
+        .header__logo {
+            padding: 15px 0;
+        }
+
+        .header__logo h1 {
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--text-color);
+            margin-bottom: 0;
+        }
+
+        /* 返回按鈕 */
+        .back-button {
+            display: inline-block;
+            padding: 8px 20px;
+            background-color: var(--secondary-color);
+            color: var(--white);
+            border-radius: 4px;
+            margin-bottom: 20px;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+
+        .back-button:hover {
+            background-color: var(--primary-color);
+            color: var(--white);
+            text-decoration: none;
+        }
+
+        .back-button i {
+            margin-right: 5px;
+        }
+
+        /* 頁面標題 */
+        .page-title {
+            background: var(--white);
+            padding: 20px 30px;
+            border-radius: 5px;
+            box-shadow: 0 2px 10px var(--shadow-color);
+            margin-bottom: 30px;
+        }
+
+        .page-title h2 {
+            color: var(--text-color);
+            margin-bottom: 0;
+            font-size: 24px;
+        }
+        /* Footer區塊 */
+        .footer {
+            background: var(--footer-bg);
+            padding: 70px 0 0;
+            color: #b5b5b5;
+            margin-top: 50px;
+        }
+
+        .footer__widget {
+            margin-bottom: 30px;
+        }
+
+        .footer__widget h6 {
+            color: var(--white);
+            font-size: 16px;
+            margin-bottom: 20px;
+        }
+
+        .footer__widget p {
+            margin-bottom: 15px;
+        }
+
+        .footer__copyright {
+            padding: 20px 0;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            text-align: center;
+            margin-top: 40px;
+        }
+
+        .footer__copyright p {
+            margin-bottom: 0;
+        }
+    </style>
+</head>
+<body>
+    <!-- 頂部信息欄 -->
+    <div class="header__top">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6 col-md-6">
+                    <div class="header__top__left">
+                        <p>老吾老以及人之老，用愛與關懷，形成善的循環</p>
+                    </div>
+                </div>
+                <div class="col-lg-6 col-md-6">
+                    <div class="header__top__right">
+                        <a href="#"><i class="fa fa-envelope"></i> info@old.org.tw</a>
+                        <a href="#"><i class="fa fa-phone"></i> (02)2533-3333</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Header區域 -->
+    <header class="header">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="header__logo text-center">
+                        <h1>財團法人台北市老人基金會</h1>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+    <section class="photo-gallery my-5">
+        <div class="container">
+           
+            <div  style="text-align: center;"class="section-title">
+                <h2>申請表</h2>
+            </div>
+            <div class="row mb-4">
+                <div class="col-md-4">
+                    <img src="donate.photo.png"  alt="圖片1" style="width: 1000px; height: auto;">
+                </div>
+            </div>

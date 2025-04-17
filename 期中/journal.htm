@@ -1,0 +1,1099 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="keywords" content="90.am‧老人基金會‧老吾老以及人之老‧老人服務‧基金會歷史‧時間軸">
+    <title>基金會歷史時間軸 | 財團法人台北市老人基金會</title>
+    
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@200;300;400;600;900&display=swap" rel="stylesheet">
+
+    <!-- Css Styles -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/4.6.2/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/elegant-icons/1.0.0/style.min.css" />
+
+    <style>
+        /* 主題顏色定義 */
+        :root {
+            --primary-color: #7fad39;
+            --secondary-color: #2a4365;
+            --accent-color: #4a5568;
+            --text-color: #2d3748;
+            --light-bg: #f5f5f5;
+            --white: #ffffff;
+            --shadow-color: rgba(0, 0, 0, 0.1);
+            --footer-bg: #2a4365;
+            --timeline-line: #ddd;
+            --timeline-dot: #7fad39;
+            --timeline-year: #2a4365;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: "Microsoft JhengHei", "Cairo", sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            background-color: var(--light-bg);
+        }
+
+        /* 基本連結樣式 */
+        a {
+            text-decoration: none;
+            color: var(--text-color);
+            transition: all 0.3s;
+        }
+
+        a:hover {
+            color: var(--primary-color);
+            text-decoration: none;
+        }
+
+        /* 標題樣式 */
+        h1, h2, h3, h4, h5, h6 {
+            font-weight: 600;
+            margin-bottom: 15px;
+        }
+
+        /* 頂部信息欄 */
+        .header__top {
+            background: var(--secondary-color);
+            padding: 10px 0;
+        }
+
+        .header__top__left {
+            padding: 6px 0;
+        }
+
+        .header__top__left p {
+            color: var(--white);
+            margin-bottom: 0;
+        }
+
+        .header__top__right {
+            text-align: right;
+            padding: 6px 0;
+        }
+
+        .header__top__right a {
+            color: var(--white);
+            margin-right: 15px;
+            font-size: 14px;
+        }
+
+        .header__top__right a:hover {
+            color: var(--primary-color);
+        }
+
+        /* Logo區塊 */
+        .header__logo {
+            padding: 15px 0;
+        }
+
+        .header__logo h1 {
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--text-color);
+            margin-bottom: 0;
+        }
+
+        /* 返回按鈕 */
+        .back-button {
+            display: inline-block;
+            padding: 8px 20px;
+            background-color: var(--secondary-color);
+            color: var(--white);
+            border-radius: 4px;
+            margin-bottom: 20px;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+
+        .back-button:hover {
+            background-color: var(--primary-color);
+            color: var(--white);
+            text-decoration: none;
+        }
+
+        .back-button i {
+            margin-right: 5px;
+        }
+
+        /* 頁面標題 */
+        .page-title {
+            background: var(--white);
+            padding: 20px 30px;
+            border-radius: 5px;
+            box-shadow: 0 2px 10px var(--shadow-color);
+            margin-bottom: 30px;
+        }
+
+        .page-title h2 {
+            color: var(--text-color);
+            margin-bottom: 0;
+            font-size: 24px;
+        }
+
+        /* 時間軸樣式 */
+        .timeline {
+            position: relative;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px 0;
+        }
+
+        .timeline::after {
+            content: '';
+            position: absolute;
+            width: 6px;
+            background-color: var(--timeline-line);
+            top: 0;
+            bottom: 0;
+            left: 50%;
+            margin-left: -3px;
+            border-radius: 5px;
+        }
+
+        .timeline-container {
+            padding: 10px 40px;
+            position: relative;
+            background-color: inherit;
+            width: 50%;
+        }
+
+        .timeline-container::after {
+            content: '';
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            right: -10px;
+            background-color: var(--timeline-dot);
+            border: 4px solid #fff;
+            top: 15px;
+            border-radius: 50%;
+            z-index: 1;
+        }
+
+        .left {
+            left: 0;
+        }
+
+        .right {
+            left: 50%;
+        }
+
+        .left::before {
+            content: " ";
+            height: 0;
+            position: absolute;
+            top: 22px;
+            width: 0;
+            z-index: 1;
+            right: 30px;
+            border: medium solid var(--white);
+            border-width: 10px 0 10px 10px;
+            border-color: transparent transparent transparent var(--white);
+        }
+
+        .right::before {
+            content: " ";
+            height: 0;
+            position: absolute;
+            top: 22px;
+            width: 0;
+            z-index: 1;
+            left: 30px;
+            border: medium solid var(--white);
+            border-width: 10px 10px 10px 0;
+            border-color: transparent var(--white) transparent transparent;
+        }
+
+        .right::after {
+            left: -10px;
+        }
+
+        .timeline-content {
+            padding: 20px 30px;
+            background-color: var(--white);
+            position: relative;
+            border-radius: 6px;
+            box-shadow: 0 2px 10px var(--shadow-color);
+            transition: all 0.3s ease;
+        }
+
+        .timeline-content:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15);
+        }
+
+        .timeline-year {
+            position: absolute;
+            top: 0;
+            font-weight: bold;
+            font-size: 18px;
+            color: var(--timeline-year);
+            background-color: rgba(255, 255, 255, 0.9);
+            padding: 2px 10px;
+            border-radius: 4px;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        }
+
+        .timeline-left-year {
+            right: -500px;
+        }
+
+        .timeline-right-year {
+            left: -500px;
+        }
+
+        .timeline-content h3 {
+            color: var(--secondary-color);
+            font-size: 18px;
+            margin-bottom: 10px;
+        }
+
+        .timeline-content p {
+            margin-bottom: 5px;
+            color: var(--text-color);
+        }
+
+        /* 年份導航 */
+        .year-navigation {
+            background: var(--white);
+            padding: 15px;
+            border-radius: 5px;
+            box-shadow: 0 2px 10px var(--shadow-color);
+            margin-bottom: 30px;
+            text-align: center;
+        }
+
+        .year-navigation h3 {
+            margin-bottom: 15px;
+            color: var(--secondary-color);
+        }
+
+        .year-navigation a {
+            display: inline-block;
+            padding: 5px 10px;
+            margin: 5px;
+            background-color: var(--light-bg);
+            border-radius: 4px;
+            font-weight: 500;
+            transition: all 0.3s;
+        }
+
+        .year-navigation a:hover,
+        .year-navigation a.active {
+            background-color: var(--primary-color);
+            color: var(--white);
+        }
+
+        /* Footer區塊 */
+        .footer {
+            background: var(--footer-bg);
+            padding: 70px 0 0;
+            color: #b5b5b5;
+            margin-top: 50px;
+        }
+
+        .footer__widget {
+            margin-bottom: 30px;
+        }
+
+        .footer__widget h6 {
+            color: var(--white);
+            font-size: 16px;
+            margin-bottom: 20px;
+        }
+
+        .footer__widget p {
+            margin-bottom: 15px;
+        }
+
+        .footer__copyright {
+            padding: 20px 0;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            text-align: center;
+            margin-top: 40px;
+        }
+
+        .footer__copyright p {
+            margin-bottom: 0;
+        }
+
+        /* 響應式設計 */
+        @media screen and (max-width: 768px) {
+            .timeline::after {
+                left: 31px;
+            }
+            
+            .timeline-container {
+                width: 100%;
+                padding-left: 70px;
+                padding-right: 25px;
+            }
+            
+            .timeline-container::before {
+                left: 60px;
+                border: medium solid var(--white);
+                border-width: 10px 10px 10px 0;
+                border-color: transparent var(--white) transparent transparent;
+            }
+
+            .left::after, .right::after {
+                left: 15px;
+            }
+            
+            .right {
+                left: 0%;
+            }
+            
+            .timeline-left-year, .timeline-right-year {
+                left: -60px;
+                width: 80px;
+                text-align: right;
+                font-size: 14px;
+            }
+        }
+
+        @media screen and (max-width: 576px) {
+            .timeline-container {
+                padding-left: 60px;
+            }
+            
+            .timeline-container::before {
+                left: 50px;
+            }
+            
+            .timeline-left-year, .timeline-right-year {
+                left: -55px;
+                width: 70px;
+                font-size: 12px;
+            }
+
+            .year-navigation a {
+                padding: 3px 6px;
+                font-size: 12px;
+            }
+        }
+
+        /* 回到頂部按鈕 */
+        .back-to-top {
+            position: fixed;
+            right: 30px;
+            bottom: 30px;
+            width: 40px;
+            height: 40px;
+            background-color: var(--primary-color);
+            color: var(--white);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            opacity: 0;
+            transition: all 0.3s;
+            z-index: 99;
+        }
+
+        .back-to-top.show {
+            opacity: 1;
+        }
+
+        .back-to-top:hover {
+            background-color: var(--secondary-color);
+        }
+    </style>
+</head>
+<body>
+    <!-- 頂部信息欄 -->
+    <div class="header__top">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6 col-md-6">
+                    <div class="header__top__left">
+                        <p>老吾老以及人之老，用愛與關懷，形成善的循環</p>
+                    </div>
+                </div>
+                <div class="col-lg-6 col-md-6">
+                    <div class="header__top__right">
+                        <a href="#"><i class="fa fa-envelope"></i> info@old.org.tw</a>
+                        <a href="#"><i class="fa fa-phone"></i> (02)2533-3333</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Header區域 -->
+    <header class="header">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="header__logo text-center">
+                        <h1>財團法人台北市老人基金會</h1>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- 主要內容區 -->
+    <section class="timeline-section">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <a href="main.htm" class="back-button"><i class="fa fa-arrow-left"></i> 回到首頁</a>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="page-title">
+                        <h2>基金會歷史時間軸 (民國76年7月 - 108年)</h2>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="year-navigation">
+                        <h3>年份導覽</h3>
+                        <a href="#y76" class="year-link">76年</a>
+                        <a href="#y77" class="year-link">77年</a>
+                        <a href="#y78" class="year-link">78年</a>
+                        <a href="#y79" class="year-link">79年</a>
+                        <a href="#y80" class="year-link">80年</a>
+                        <a href="#y81" class="year-link">81年</a>
+                        <a href="#y82" class="year-link">82年</a>
+                        <a href="#y83" class="year-link">83年</a>
+                        <a href="#y84" class="year-link">84年</a>
+                        <a href="#y85" class="year-link">85年</a>
+                        <a href="#y86" class="year-link">86年</a>
+                        <a href="#y87" class="year-link">87年</a>
+                        <a href="#y88" class="year-link">88年</a>
+                        <a href="#y89" class="year-link">89年</a>
+                        <a href="#y90" class="year-link">90年</a>
+                        <a href="#y91" class="year-link">91年</a>
+                        <a href="#y92" class="year-link">92年</a>
+                        <a href="#y93" class="year-link">93年</a>
+                        <a href="#y94" class="year-link">94年</a>
+                        <a href="#y95" class="year-link">95年</a>
+                        <a href="#y96" class="year-link">96年</a>
+                        <a href="#y97" class="year-link">97年</a>
+                        <a href="#y98" class="year-link">98年</a>
+                        <a href="#y99" class="year-link">99年</a>
+                        <a href="#y100" class="year-link">100年</a>
+                        <a href="#y101" class="year-link">101年</a>
+                        <a href="#y102" class="year-link">102年</a>
+                        <a href="#y103" class="year-link">103年</a>
+                        <a href="#y104" class="year-link">104年</a>
+                        <a href="#y105" class="year-link">105年</a>
+                        <a href="#y106" class="year-link">106年</a>
+                        <a href="#y107" class="year-link">107年</a>
+                        <a href="#y108" class="year-link">108年</a>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 時間軸開始 -->
+            <div class="timeline">
+                <!-- 76年事件 -->
+                <div id="y76" class="timeline-container left">
+                    <div class="timeline-year timeline-left-year">民國76年7月</div>
+                    <div class="timeline-content">
+                        <h3>財團法人臺北市老人基金會成立</h3>
+                        <p>財團法人臺北市老人基金會經臺北市政府社會局登記設立，參與老人福利服務工作。</p>
+                    </div>
+                </div>
+
+                <div class="timeline-container right">
+                    <div class="timeline-year timeline-right-year">民國76年12月</div>
+                    <div class="timeline-content">
+                        <h3>設置老人諮詢中心</h3>
+                        <p>設置老人諮詢中心，整合相關老人研究議題。</p>
+                    </div>
+                </div>
+
+                <!-- 77年事件 -->
+                <div id="y77" class="timeline-container left">
+                    <div class="timeline-year timeline-left-year">民國77年4月</div>
+                    <div class="timeline-content">
+                        <h3>設置助養組</h3>
+                        <p>設置助養組協助貧困無依老人。</p>
+                    </div>
+                </div>
+
+                <!-- 78年事件 -->
+                <div id="y78" class="timeline-container right">
+                    <div class="timeline-year timeline-right-year">民國78年1月</div>
+                    <div class="timeline-content">
+                        <h3>『寒冬送暖』系列活動</h3>
+                        <p>『寒冬送暖』系列活動包含望年餐會，致贈助養品、助養金，至今持續進行中。</p>
+                    </div>
+                </div>
+
+                <div class="timeline-container left">
+                    <div class="timeline-year timeline-left-year">民國78年7月</div>
+                    <div class="timeline-content">
+                        <h3>個案管理制度</h3>
+                        <p>助養組推動會審會辦，個案管理制度。</p>
+                    </div>
+                </div>
+
+                <!-- 79年事件 -->
+                <div id="y79" class="timeline-container right">
+                    <div class="timeline-year timeline-right-year">民國79年1月</div>
+                    <div class="timeline-content">
+                        <h3>成立老人救援中心</h3>
+                        <p>成立24小時全年無休老人救援中心。</p>
+                    </div>
+                </div>
+
+                <!-- 80年事件 -->
+                <div id="y80" class="timeline-container left">
+                    <div class="timeline-year timeline-left-year">民國80年3月</div>
+                    <div class="timeline-content">
+                        <h3>兩岸合作交流</h3>
+                        <p>與中國老年基金會合作交流。</p>
+                    </div>
+                </div>
+
+                <div class="timeline-container right">
+                    <div class="timeline-year timeline-right-year">民國80年12月</div>
+                    <div class="timeline-content">
+                        <h3>製作老人福利電視節目</h3>
+                        <p>製作金色年華、重陽節等老人福利電視節目。</p>
+                    </div>
+                </div>
+
+                <!-- 81年事件 -->
+                <div id="y81" class="timeline-container left">
+                    <div class="timeline-year timeline-left-year">民國81年4月</div>
+                    <div class="timeline-content">
+                        <h3>『生命連線』系統</h3>
+                        <p>推動獨居老人居家保全『生命連線』系統。</p>
+                    </div>
+                </div>
+
+                <div class="timeline-container right">
+                    <div class="timeline-year timeline-right-year">民國81年12月</div>
+                    <div class="timeline-content">
+                        <h3>設置防護組</h3>
+                        <p>設置防護組，協助受虐老人。</p>
+                    </div>
+                </div>
+
+                <!-- 82年事件 -->
+                <div id="y82" class="timeline-container left">
+                    <div class="timeline-year timeline-left-year">民國82年10月</div>
+                    <div class="timeline-content">
+                        <h3>『養兒防老』節目製作</h3>
+                        <p>與中視聯合制作『養兒防老』節目報導獨居、失養之孤苦老人，使社會大眾正視獨居老人問題。</p>
+                    </div>
+                </div>
+
+                <!-- 83年事件 -->
+                <div id="y83" class="timeline-container right">
+                    <div class="timeline-year timeline-right-year">民國83年3月</div>
+                    <div class="timeline-content">
+                        <h3>『生命關懷愛心連線』</h3>
+                        <p>『生命關懷愛心連線』召集北區無線電計程車聯誼會七仟輛車，成立獨居老人緊急救援系統。</p>
+                    </div>
+                </div>
+
+                <div class="timeline-container left">
+                    <div class="timeline-year timeline-left-year">民國83年7月</div>
+                    <div class="timeline-content">
+                        <h3>『老人保護委員會』</h3>
+                        <p>『老人保護委員會』由基金會邀集五十八位立委共同出席，達成老人福利相關法案之推動。</p>
+                    </div>
+                </div>
+
+                <!-- 84年事件 -->
+                <div id="y84" class="timeline-container right">
+                    <div class="timeline-year timeline-right-year">民國84年2月</div>
+                    <div class="timeline-content">
+                        <h3>協助公園拆遷老人</h3>
+                        <p>協助14、15號公園拆遷戶老人尋找安置新家。</p>
+                    </div>
+                </div>
+
+                <div class="timeline-container left">
+                    <div class="timeline-year timeline-left-year">民國84年6月</div>
+                    <div class="timeline-content">
+                        <h3>『和諧專案』</h3>
+                        <p>與中央員警大學合辦『和諧專案』，配合全省一萬五仟位勤區員警，主動提報疑似受虐老人個案。</p>
+                    </div>
+                </div>
+
+                <!-- 85年事件 -->
+                <div id="y85" class="timeline-container right">
+                    <div class="timeline-year timeline-right-year">民國85年6月</div>
+                    <div class="timeline-content">
+                        <h3>推動修正老人福利法</h3>
+                        <p>推動修正老人福利法，確立老人為65歲以上，並增加老人保護專章。</p>
+                    </div>
+                </div>
+
+                <div class="timeline-container left">
+                    <div class="timeline-year timeline-left-year">民國85年6月</div>
+                    <div class="timeline-content">
+                        <h3>完成老人保護計畫書</h3>
+                        <p>完成國內首冊老人保護計畫書。</p>
+                    </div>
+                </div>
+
+                <!-- 86年事件 -->
+                <div id="y86" class="timeline-container right">
+                    <div class="timeline-year timeline-right-year">民國86年1月</div>
+                    <div class="timeline-content">
+                        <h3>成立老人防護聯絡處</h3>
+                        <p>成立桃園、新竹、苗栗、台中、南投、嘉義、台南、高雄八處老人防護聯絡處。</p>
+                    </div>
+                </div>
+
+                <div class="timeline-container left">
+                    <div class="timeline-year timeline-left-year">民國86年7月</div>
+                    <div class="timeline-content">
+                        <h3>設置『老人中途之家』</h3>
+                        <p>設置『老人中途之家』24小時緊急安置迷途、受虐老人。</p>
+                    </div>
+                </div>
+
+                <!-- 87年事件 -->
+                <div id="y87" class="timeline-container right">
+                    <div class="timeline-year timeline-right-year">民國87年1月</div>
+                    <div class="timeline-content">
+                        <h3>『希望之燈』活動</h3>
+                        <p>『希望之燈』寒冬送暖系列活動，發掘千餘位需協助個案。</p>
+                    </div>
+                </div>
+
+                <div class="timeline-container left">
+                    <div class="timeline-year timeline-left-year">民國87年12月</div>
+                    <div class="timeline-content">
+                        <h3>設置協尋組</h3>
+                        <p>設置協尋組，協助迷途老人。</p>
+                    </div>
+                </div>
+
+                <!-- 88年事件 -->
+                <div id="y88" class="timeline-container right">
+                    <div class="timeline-year timeline-right-year">民國88年1月</div>
+                    <div class="timeline-content">
+                        <h3>『他在哪里?』協尋專案</h3>
+                        <p>與中視、聯合報、警廣製作『他在哪里?』迷途老人協尋專案，協助800位老人返家團圓。</p>
+                    </div>
+                </div>
+
+                <div class="timeline-container left">
+                    <div class="timeline-year timeline-left-year">民國88年5月</div>
+                    <div class="timeline-content">
+                        <h3>全國安養護會議</h3>
+                        <p>召開全國安養護會議，協助輔導七佰余家安養護機構合法立案。</p>
+                    </div>
+                </div>
+
+                <div class="timeline-container right">
+                    <div class="timeline-year timeline-right-year">民國88年6月</div>
+                    <div class="timeline-content">
+                        <h3>『老有所養』節目製作</h3>
+                        <p>與東森s台聯合制作『老有所養』單元，報導獨居老人個案協尋迷途老人。</p>
+                    </div>
+                </div>
+
+                <div class="timeline-container left">
+                    <div class="timeline-year timeline-left-year">民國88年7月</div>
+                    <div class="timeline-content">
+                        <h3>『我愛老人公益宣誓』</h3>
+                        <p>一九九九年國際關懷年『我愛老人公益宣誓』十二位新聞主播以愛心手印，發起關懷獨居老人活動。</p>
+                    </div>
+                </div>
+
+                <div class="timeline-container right">
+                    <div class="timeline-year timeline-right-year">民國88年9月</div>
+                    <div class="timeline-content">
+                        <h3>『921震災黃菊花重生計畫』</h3>
+                        <p>921地震後基金會緊急安置失能老人274位，關懷協助災區低收入戶及失依老人逾2000件個案，至今仍持續輔導中。</p>
+                    </div>
+                </div>
+
+                <div class="timeline-container left">
+                    <div class="timeline-year timeline-left-year">民國88年11月</div>
+                    <div class="timeline-content">
+                        <h3>『守護黃菊花音樂會』</h3>
+                        <p>與廣青合唱團共同舉辦『守護黃菊花音樂會』，以紀念921死難老人。</p>
+                    </div>
+                </div>
+
+                <!-- 89年事件 -->
+                <div id="y89" class="timeline-container left">
+                    <div class="timeline-year timeline-left-year">民國89年1月</div>
+                    <div class="timeline-content">
+                        <h3>『寒冬送暖』圍爐活動</h3>
+                        <p>『寒冬送暖』於臺北市內湖區團管司令部，宴請一仟余名獨居老人春節圍爐並致贈紀念品及紅包。</p>
+                    </div>
+                </div>
+
+                <div class="timeline-container right">
+                    <div class="timeline-year timeline-right-year">民國89年3月</div>
+                    <div class="timeline-content">
+                        <h3>獨居老人在宅服務</h3>
+                        <p>由本會及義工結合扶青團組成獨居老人在宅服務。</p>
+                    </div>
+                </div>
+
+                <div class="timeline-container left">
+                    <div class="timeline-year timeline-left-year">民國89年5月</div>
+                    <div class="timeline-content">
+                        <h3>『母親節愛心連線敬老活動』</h3>
+                        <p>致贈送500具聲控手機予貧苦獨居老人，使老人在危難時候能獲得及時幫助。</p>
+                    </div>
+                </div>
+
+                <div class="timeline-container right">
+                    <div class="timeline-year timeline-right-year">民國89年6月</div>
+                    <div class="timeline-content">
+                        <h3>協尋老人資料整合</h3>
+                        <p>與臺北縣警察局合作協尋老人資料比對及資源整合會議，期待協助更多迷途老人歸家。</p>
+                    </div>
+                </div>
+
+                <div class="timeline-container left">
+                    <div class="timeline-year timeline-left-year">民國89年7月</div>
+                    <div class="timeline-content">
+                        <h3>設立921災區重建委員會</h3>
+                        <p>設立921災區中寮鄉、仁愛鄉重建委員會。</p>
+                    </div>
+                </div>
+
+                <div class="timeline-container right">
+                    <div class="timeline-year timeline-right-year">民國89年7月</div>
+                    <div class="timeline-content">
+                        <h3>家庭暴力防治法宣導</h3>
+                        <p>與臺北市政府共同發表家庭暴力防治法推行宣導成立發表會，專案提出老人受虐個案研討及防治方法。</p>
+                    </div>
+                </div>
+
+                <div class="timeline-container left">
+                    <div class="timeline-year timeline-left-year">民國89年8月</div>
+                    <div class="timeline-content">
+                        <h3>『失蹤老人何處尋』公聽會</h3>
+                        <p>由本會甘秘書長及立法院張蔡美委員等共同主持，警政署、資策會等參與。</p>
+                    </div>
+                </div>
+
+                <div class="timeline-container right">
+                    <div class="timeline-year timeline-right-year">民國89年8月</div>
+                    <div class="timeline-content">
+                        <h3>農禪寺中元祭</h3>
+                        <p>農禪寺中元祭吊念本會四千位過世個案獨居老人，以慰其在天之靈。</p>
+                    </div>
+                </div>
+
+                <div class="timeline-container left">
+                    <div class="timeline-year timeline-left-year">民國89年10月</div>
+                    <div class="timeline-content">
+                        <h3>東森電視台協尋老人單元</h3>
+                        <p>協助東森電視臺，探討社會獨居老人個案。並協助東森新聞協尋老人單元開播，促使社會大眾對迷途老人問題之關注。</p>
+                    </div>
+                </div>
+
+                <div class="timeline-container right">
+                    <div class="timeline-year timeline-right-year">民國89年10月</div>
+                    <div class="timeline-content">
+                        <h3>教育電臺『黃金歲月』節目</h3>
+                        <p>教育電臺『黃金歲月』節目播出，以老人生活及社會互動關係為主題，使老人在社會的參與協助下，有更優質的生活品質。</p>
+                    </div>
+                </div>
+
+                <div class="timeline-container left">
+                    <div class="timeline-year timeline-left-year">民國89年11月</div>
+                    <div class="timeline-content">
+                        <h3>臺北之音電臺節目</h3>
+                        <p>臺北之音電臺現場節目播出，由本會甘秘書長及譚艾珍小姐共同主持，以有效宣導老人如何過生活為主題。</p>
+                    </div>
+                </div>
+
+                <div class="timeline-container right">
+                    <div class="timeline-year timeline-right-year">民國89年12月</div>
+                    <div class="timeline-content">
+                        <h3>全省獨居老人生命連線</h3>
+                        <p>協助全省二十一縣市設置獨居老人生命連線。</p>
+                    </div>
+                </div>
+
+                <div class="timeline-container left">
+                    <div class="timeline-year timeline-left-year">民國89年12月</div>
+                    <div class="timeline-content">
+                        <h3>『千山萬水總是情』敬老活動</h3>
+                        <p>『千山萬水總是情』敬老孝親陪老人走向戶外活動，在捷運淡園廣場，參與老人五千人。</p>
+                    </div>
+                </div>
+
+                <!-- 90年事件 -->
+                <div id="y90" class="timeline-container right">
+                    <div class="timeline-year timeline-right-year">民國90年2月</div>
+                    <div class="timeline-content">
+                        <h3>設置服務組</h3>
+                        <p>設置服務組，提供老人全方位的服務。</p>
+                    </div>
+                </div>
+
+                <div class="timeline-container left">
+                    <div class="timeline-year timeline-left-year">民國90年3月</div>
+                    <div class="timeline-content">
+                        <h3>『長青族運動研習營』</h3>
+                        <p>與臺北市立體育場合辦『長青族運動研習營』活動，參與老人二萬人以上，成功推展銀髮族全民運動。</p>
+                    </div>
+                </div>
+
+                <div class="timeline-container right">
+                    <div class="timeline-year timeline-right-year">民國90年5月</div>
+                    <div class="timeline-content">
+                        <h3>『尋找臺灣關懷心』活動</h3>
+                        <p>與中天新聞台及中華電信共同舉辦『尋找臺灣關懷心』活動。</p>
+                    </div>
+                </div>
+
+                <div class="timeline-container left">
+                    <div class="timeline-year timeline-left-year">民國90年5月</div>
+                    <div class="timeline-content">
+                        <h3>母親節尋親記者會</h3>
+                        <p>母親節當天于立法院召開尋親記者會，發表協尋個案母親請求協尋失蹤父母。</p>
+                    </div>
+                </div>
+
+                <div class="timeline-container right">
+                    <div class="timeline-year timeline-right-year">民國90年7月</div>
+                    <div class="timeline-content">
+                        <h3>協助國科會研究計畫</h3>
+                        <p>協助行政院國科會研究計畫『都市政策、政策網路與地方政府社會福利建構之研究』。</p>
+                    </div>
+                </div>
+
+                <div class="timeline-container left">
+                    <div class="timeline-year timeline-left-year">民國90年7月</div>
+                    <div class="timeline-content">
+                        <h3>日本老人福利政策研討</h3>
+                        <p>本會甘秘書長受邀日本政府內政聽代表亞洲區研究老人福利政策及日本黃金法案政策階段執行成效討論會議。</p>
+                    </div>
+                </div>
+
+                <div class="timeline-container right">
+                    <div class="timeline-year timeline-right-year">民國90年12月</div>
+                    <div class="timeline-content">
+                        <h3>『2001銀髮嘉年華』</h3>
+                        <p>『2001銀髮嘉年華』于大安森林公園舉辦歡樂遊園會，邀請老人參與健康休閒活動，與會老人八仟人。</p>
+                    </div>
+                </div>
+
+                <!-- 91年事件 -->
+                <div id="y91" class="timeline-container left">
+                    <div class="timeline-year timeline-left-year">民國91年3月</div>
+                    <div class="timeline-content">
+                        <h3>獲總統褒揚</h3>
+                        <p>獲頒總統褒揚全國十大優良基金會。</p>
+                    </div>
+                </div>
+
+                <div class="timeline-container right">
+                    <div class="timeline-year timeline-right-year">民國91年8月</div>
+                    <div class="timeline-content">
+                        <h3>『2002 銀髮運動研習營』</h3>
+                        <p>『2002 銀髮運動研習營』活動，與會老人及民眾逾25000人。</p>
+                    </div>
+                </div>
+
+                <div class="timeline-container left">
+                    <div class="timeline-year timeline-left-year">民國91年10月</div>
+                    <div class="timeline-content">
+                        <h3>『銀髮重陽敬老列車』</h3>
+                        <p>『銀髮重陽敬老列車』與臺北捷運公司共同發起于重陽節期間，鼓勵老人搭乘捷運活動，參與老人達四十萬人次。</p>
+                    </div>
+                </div>
+
+                <!-- 92年事件 -->
+                <div id="y92" class="timeline-container right">
+                    <div class="timeline-year timeline-right-year">民國92年7月</div>
+                    <div class="timeline-content">
+                        <h3>『銀髮奇機』專案</h3>
+                        <p>『銀髮奇機』與中華電信合作，推出適用于老人的行動電話，結合基地台定位等多項服務專案。</p>
+                    </div>
+                </div>
+
+                <!-- 93年事件 -->
+                <div id="y93" class="timeline-container left">
+                    <div class="timeline-year timeline-left-year">民國93年6月</div>
+                    <div class="timeline-content">
+                        <h3>『第一屆老人運動會』</h3>
+                        <p>『第一屆老人運動會』規劃健走、健跑、游泳、桌球、羽球、網球、籃球、木球、槌球、地面高球、歌唱、象棋、圍棋、麻將、攝影十五項競賽，參與老人二萬余人。</p>
+                    </div>
+                </div>
+
+                <!-- 94年事件 -->
+                <div id="y94" class="timeline-container right">
+                    <div class="timeline-year timeline-right-year">民國94年10月</div>
+                    <div class="timeline-content">
+                        <h3>『第二屆老人運動會』</h3>
+                        <p>『第二屆老人運動會』于臺北小巨蛋舉行，參與老人三萬余人。</p>
+                    </div>
+                </div>
+
+                <!-- 95年事件 -->
+                <div id="y95" class="timeline-container left">
+                    <div class="timeline-year timeline-left-year">民國95年10月</div>
+                    <div class="timeline-content">
+                        <h3>『第三屆老人運動會』</h3>
+                        <p>『第三屆老人運動會』于臺北田徑場舉行，新增鐵人賽項目，參與老人四萬余人。</p>
+                    </div>
+                </div>
+
+                <!-- 96年事件 -->
+                <div id="y96" class="timeline-container right">
+                    <div class="timeline-year timeline-right-year">民國96年4月</div>
+                    <div class="timeline-content">
+                        <h3>老人助養總檢討</h3>
+                        <p>辦理老人助養總檢討，訂定會審會辦、個案管理方案，及三項特案老人補助辦法。
+                    </div>
+                </div>
+                
+                <!-- 97年事件 -->
+                <div id="y97" class="timeline-container left">
+                    <div class="timeline-year timeline-left-year">民國97年5月</div>
+                    <div class="timeline-content">
+                        <h3>兩岸老人福利服務交流</h3>
+                        <p>邀請大陸各地老齡辦參觀訪問，討論兩岸老人福利服務辦法及建言。</p>
+                    </div>
+                </div>
+
+                <!-- 98年事件 -->
+                <div id="y98" class="timeline-container right">
+                    <div class="timeline-year timeline-right-year">民國98年10月</div>
+                    <div class="timeline-content">
+                        <h3>第六屆臺北老人運動會</h3>
+                        <p>辦理第六屆臺北老人運動會，增加老齡橄欖球、足球競賽項目。</p>
+                    </div>
+                </div>
+
+                <!-- 99年事件 -->
+                <div id="y99" class="timeline-container left">
+                    <div class="timeline-year timeline-left-year">民國99年7月</div>
+                    <div class="timeline-content">
+                        <h3>個案總清查和檢討</h3>
+                        <p>辦理助防協三組個案總清查和檢討。</p>
+                    </div>
+                </div>
+
+                <!-- 100年事件 -->
+                <div id="y100" class="timeline-container right">
+                    <div class="timeline-year timeline-right-year">民國100年3月</div>
+                    <div class="timeline-content">
+                        <h3>建國百年慶助活動</h3>
+                        <p>建國百年慶助活動，帶領老人遊園踏青。</p>
+                    </div>
+                </div>
+
+                <!-- 101年事件 -->
+                <div id="y101" class="timeline-container left">
+                    <div class="timeline-year timeline-left-year">民國101年2月</div>
+                    <div class="timeline-content">
+                        <h3>風雲杯全國麻將比賽</h3>
+                        <p>風雲杯全國麻將比賽，由本會和臺北市老年運動協會共同舉辦。</p>
+                    </div>
+                </div>
+
+                <div class="timeline-container right">
+                    <div class="timeline-year timeline-right-year">民國101年9月</div>
+                    <div class="timeline-content">
+                        <h3>兩岸養老護理合作</h3>
+                        <p>與中國國家康復輔具研究中心合作養老護理臺灣模式。</p>
+                    </div>
+                </div>
+
+                <!-- 102年事件 -->
+                <div id="y102" class="timeline-container left">
+                    <div class="timeline-year timeline-left-year">民國102年6月</div>
+                    <div class="timeline-content">
+                        <h3>老年服務講習</h3>
+                        <p>辦理老年服務講習，培訓優秀服務人員。</p>
+                    </div>
+                </div>
+
+                <div class="timeline-container right">
+                    <div class="timeline-year timeline-right-year">民國102年11月</div>
+                    <div class="timeline-content">
+                        <h3>第十屆臺北老年運動會</h3>
+                        <p>第十屆臺北老年運動會，百齡和九十歲以上高齡選手參加踴躍。</p>
+                    </div>
+                </div>
+
+                <!-- 103年事件 -->
+                <div id="y103" class="timeline-container left">
+                    <div class="timeline-year timeline-left-year">民國103年7月</div>
+                    <div class="timeline-content">
+                        <h3>兩岸老年產業研討會</h3>
+                        <p>兩岸老年產業研討會，於北京開幕。</p>
+                    </div>
+                </div>
+
+                <!-- 104年事件 -->
+                <div id="y104" class="timeline-container right">
+                    <div class="timeline-year timeline-right-year">民國104年10月</div>
+                    <div class="timeline-content">
+                        <h3>第十二屆台北老年運動會</h3>
+                        <p>第十二屆台北老年運動會，九十歲以上選手超過三十位。</p>
+                    </div>
+                </div>
+
+                <!-- 105年事件 -->
+                <div id="y105" class="timeline-container left">
+                    <div class="timeline-year timeline-left-year">民國105年8月</div>
+                    <div class="timeline-content">
+                        <h3>老年90網站及呼叫中心啟動</h3>
+                        <p>老年90網站及呼叫中心啟動。</p>
+                    </div>
+                </div>
+
+                <div class="timeline-container right">
+                    <div class="timeline-year timeline-right-year">民國105年8月</div>
+                    <div class="timeline-content">
+                        <h3>老年生命年限網站啟動</h3>
+                        <p>老年生命年限網站及呼叫中心啟動。</p>
+                    </div>
+                </div>
+
+                <!-- 106年事件 -->
+                <div id="y106" class="timeline-container left">
+                    <div class="timeline-year timeline-left-year">民國106年9月</div>
+                    <div class="timeline-content">
+                        <h3>2017台北老年運動會</h3>
+                        <p>辦理台灣大學2017台北老年運動會。</p>
+                    </div>
+                </div>
+
+                <!-- 107年事件 -->
+                <div id="y107" class="timeline-container right">
+                    <div class="timeline-year timeline-right-year">民國107年7月</div>
+                    <div class="timeline-content">
+                        <h3>養老照料中心</h3>
+                        <p>辦理養老照料中心。</p>
+                    </div>
+                </div>
+
+                <!-- 108年事件 -->
+                <div id="y108" class="timeline-container left">
+                    <div class="timeline-year timeline-left-year">民國108年3月</div>
+                    <div class="timeline-content">
+                        <h3>90乾糧專案推動</h3>
+                        <p>推動90乾糧專案。</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>

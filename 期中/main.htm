@@ -1,0 +1,986 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="keywords" content="90.am‧老人基金會‧老吾老以及人之老‧老人服務">
+    <title>財團法人台北市老人基金會</title>
+    
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@200;300;400;600;900&display=swap" rel="stylesheet">
+
+    <!-- Css Styles -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/4.6.2/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/elegant-icons/1.0.0/style.min.css" />
+
+    <style>
+        /* 主題顏色定義 - 參考Ogani樣式但調整為適合老人基金會 */
+        :root {
+            --primary-color: #7fad39; /* Ogani主色 */
+            --secondary-color: #2a4365;
+            --accent-color: #4a5568;
+            --text-color: #2d3748;
+            --light-bg: #f5f5f5;
+            --white: #ffffff;
+            --shadow-color: rgba(0, 0, 0, 0.1);
+            --footer-bg: #2a4365;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: "Microsoft JhengHei", "Cairo", sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            background-color: var(--light-bg);
+        }
+
+        /* 基本連結樣式 */
+        a {
+            text-decoration: none;
+            color: var(--text-color);
+            transition: all 0.3s;
+        }
+
+        a:hover {
+            color: var(--primary-color);
+            text-decoration: none;
+        }
+
+        /* 標題樣式 */
+        h1, h2, h3, h4, h5, h6 {
+            font-weight: 600;
+            margin-bottom: 15px;
+        }
+
+        /* 警告視窗樣式 */
+        .alert-modal {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: var(--white);
+            padding: 2rem;
+            border-radius: 5px;
+            box-shadow: 0 5px 15px var(--shadow-color);
+            z-index: 2000;
+            width: 90%;
+            max-width: 500px;
+        }
+
+        .modal-btn {
+            display: inline-block;
+            padding: 10px 28px 10px;
+            background-color: var(--primary-color);
+            border: none;
+            color: var(--white);
+            font-size: 14px;
+            border-radius: 30px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .modal-btn:hover {
+            background-color: #5c8129;
+            color: var(--white);
+        }
+
+        /* 頂部信息欄 */
+        .header__top {
+            background: var(--secondary-color);
+            padding: 10px 0;
+        }
+
+        .header__top__left {
+            padding: 6px 0;
+        }
+
+        .header__top__left p {
+            color: var(--white);
+            margin-bottom: 0;
+        }
+
+        .header__top__right {
+            text-align: right;
+            padding: 6px 0;
+        }
+
+        .header__top__right a {
+            color: var(--white);
+            margin-right: 15px;
+            font-size: 14px;
+        }
+
+        .header__top__right a:hover {
+            color: var(--primary-color);
+        }
+
+        /* Logo區塊 */
+        .header__logo {
+            padding: 15px 0;
+        }
+
+        .header__logo h1 {
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--text-color);
+            margin-bottom: 0;
+        }
+
+        /* 主導航欄 */
+        .header__menu {
+            padding: 15px 0;
+            border-top: 1px solid #e5e5e5;
+        }
+
+        .header__menu ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+        }
+
+        .header__menu ul li {
+            position: relative;
+            margin-right: 45px;
+        }
+
+        .header__menu ul li:last-child {
+            margin-right: 0;
+        }
+
+        .header__menu ul li a {
+            font-size: 16px;
+            color: var(--text-color);
+            font-weight: 600;
+            display: block;
+            padding: 10px 0;
+        }
+
+        .header__menu ul li a:hover {
+            color: var(--primary-color);
+        }
+
+        .header__menu ul li:hover .submenu {
+            display: block;
+        }
+
+        /* 子菜單樣式 */
+        .submenu {
+            display: none;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background: var(--white);
+            border-radius: 5px;
+            box-shadow: 0 5px 15px var(--shadow-color);
+            padding: 1rem;
+            min-width: 200px;
+            z-index: 100;
+        }
+
+        .submenu a {
+            display: block;
+            padding: 8px 0;
+            font-weight: 500;
+        }
+
+        /* 英雄區塊 */
+        .hero {
+            padding: 80px 0;
+            background-size: cover;
+            background-position: center;
+            position: relative;
+            margin-top: 20px;
+        }
+
+        .hero:before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.3);
+        }
+
+        .hero__text {
+            position: relative;
+            z-index: 1;
+            text-align: center;
+        }
+
+        .hero__text h1 {
+            font-size: 46px;
+            color: var(--white);
+            font-weight: 700;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        }
+
+        .hero__text p {
+            color: var(--white);
+            font-size: 18px;
+            margin-bottom: 35px;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+        }
+
+        /* 區塊標題 */
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .section-title h2 {
+            color: var(--text-color);
+            font-weight: 700;
+            position: relative;
+            display: inline-block;
+            padding-bottom: 15px;
+        }
+
+        .section-title h2:after {
+            position: absolute;
+            content: "";
+            width: 50%;
+            height: 3px;
+            left: 25%;
+            bottom: 0;
+            background: var(--primary-color);
+        }
+
+        /* 高齡化趨勢區塊 */
+        .aging-trend {
+            padding: 80px 0;
+            background: var(--white);
+        }
+
+        .stat-card {
+            background: var(--white);
+            border-radius: 10px;
+            box-shadow: 0 5px 15px var(--shadow-color);
+            padding: 25px;
+            margin-bottom: 30px;
+            text-align: center;
+            transition: all 0.3s;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .stat-icon {
+            font-size: 36px;
+            color: var(--primary-color);
+            margin-bottom: 15px;
+        }
+
+        .stat-value {
+            font-size: 32px;
+            font-weight: 700;
+            color: var(--text-color);
+            margin-bottom: 5px;
+        }
+
+        .stat-label {
+            font-size: 16px;
+            color: var(--accent-color);
+        }
+
+        .stat-change {
+            font-size: 14px;
+            color: var(--primary-color);
+            margin-top: 5px;
+        }
+
+        .trend-btn {
+            display: inline-block;
+            padding: 12px 30px;
+            background-color: var(--primary-color);
+            border: none;
+            color: var(--white);
+            font-size: 16px;
+            border-radius: 30px;
+            cursor: pointer;
+            transition: all 0.3s;
+            margin-top: 30px;
+        }
+
+        .trend-btn:hover {
+            background-color: #5c8129;
+            color: var(--white);
+        }
+
+        .trend-panel {
+            background: var(--light-bg);
+            border-radius: 10px;
+            padding: 30px;
+            margin-top: 40px;
+            box-shadow: 0 5px 15px var(--shadow-color);
+        }
+
+        .trend-panel h4 {
+            margin-bottom: 20px;
+            color: var(--text-color);
+        }
+
+        .trend-panel p {
+            color: var(--accent-color);
+            margin-bottom: 15px;
+        }
+
+        .trend-panel .btn-group {
+            margin-bottom: 20px;
+        }
+
+        .trend-panel .btn {
+            margin-right: 10px;
+            border-radius: 20px;
+            background-color: var(--primary-color);
+            border: none;
+            color: var(--white);
+            padding: 8px 20px;
+        }
+
+        .trend-panel .btn:hover {
+            background-color: #5c8129;
+        }
+
+        .trend-img {
+            width: 100%;
+            height: 300px;
+            background-color: #eee;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-top: 20px;
+        }
+
+        /* 最新消息區塊 */
+        .latest-news {
+            padding: 80px 0;
+            background: var(--white);
+        }
+
+        /* 活動卡片樣式 */
+        .activity-card {
+            margin-bottom: 30px;
+            border-radius: 5px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px var(--shadow-color);
+            transition: all 0.3s;
+        }
+
+        .activity-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .activity-img {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .activity-img img {
+            width: 100%;
+            transition: all 0.5s;
+        }
+
+        .activity-img:hover img {
+            transform: scale(1.05);
+        }
+
+        .activity-content {
+            padding: 20px;
+            background: var(--white);
+        }
+
+        .activity-content h4 {
+            font-size: 18px;
+            margin-bottom: 10px;
+        }
+
+        .activity-content p {
+            color: var(--accent-color);
+            margin-bottom: 10px;
+        }
+
+        .activity-btn {
+            background: var(--primary-color);
+            color: var(--white);
+            padding: 8px 20px;
+            border-radius: 30px;
+            display: inline-block;
+            font-size: 14px;
+            font-weight: 600;
+        }
+
+        .activity-btn:hover {
+            background: #5c8129;
+            color: var(--white);
+        }
+
+        /* 關於我們區塊 */
+        .about-section {
+            padding: 80px 0;
+            background: var(--light-bg);
+        }
+
+        .about-text {
+            text-align: justify;
+            line-height: 1.8;
+        }
+
+        /* 表單樣式 */
+        .feedback-form {
+            margin-top: 20px;
+        }
+
+        .feedback-form input,
+        .feedback-form textarea {
+            width: 100%;
+            padding: 12px 15px;
+            margin-bottom: 15px;
+            border: 1px solid #e5e5e5;
+            border-radius: 5px;
+            font-size: 14px;
+        }
+
+        .feedback-form input:focus,
+        .feedback-form textarea:focus {
+            border-color: var(--primary-color);
+            outline: none;
+        }
+
+        /* Google Maps 樣式 */
+        .map-section {
+            padding: 50px 0;
+            background: var(--white);
+        }
+
+        .map-container {
+            width: 100%;
+            height: 400px;
+            border-radius: 5px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px var(--shadow-color);
+        }
+
+        .map-container iframe {
+            width: 100%;
+            height: 100%;
+            border: 0;
+        }
+
+        /* Footer區塊 */
+        .footer {
+            background: var(--footer-bg);
+            padding: 70px 0 0;
+            color: #b5b5b5;
+        }
+
+        .footer__widget {
+            margin-bottom: 30px;
+        }
+
+        .footer__widget h6 {
+            color: var(--white);
+            font-size: 16px;
+            margin-bottom: 20px;
+        }
+
+        .footer__widget p {
+            margin-bottom: 15px;
+        }
+
+        .footer__copyright {
+            padding: 20px 0;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            text-align: center;
+            margin-top: 40px;
+        }
+
+        .footer__copyright p {
+            margin-bottom: 0;
+        }
+
+        /* 移動文字 */
+        .moving-text {
+            overflow: hidden;
+            white-space: nowrap;
+            animation: scrollText 20s linear infinite;
+            font-size: 22px;
+            color: var(--white);
+            margin-top: 15px;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+        }
+
+        @keyframes scrollText {
+            from { transform: translateX(100%); }
+            to { transform: translateX(-100%); }
+        }
+
+        /* 響應式設計 */
+        @media (max-width: 992px) {
+            .header__menu ul li {
+                margin-right: 25px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .header__menu {
+                display: none;
+            }
+            
+            .hero__text h1 {
+                font-size: 36px;
+            }
+            
+            .submenu {
+                position: static;
+                box-shadow: none;
+                margin-top: 0.5rem;
+                padding: 0.5rem;
+                width: 100%;
+            }
+
+            .map-container {
+                height: 300px;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .header__logo h1 {
+                font-size: 20px;
+            }
+            
+            .hero__text h1 {
+                font-size: 28px;
+            }
+            
+            .section-title h2 {
+                font-size: 24px;
+            }
+
+            .map-container {
+                height: 250px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- 詐騙警告視窗 -->
+    <div id="alertModal" class="alert-modal">
+        <h2>重要公告</h2>
+        <p>本網站經常被冒名，我們不會主動致電給您，
+            要求進行任何金融操作，<strong>若有疑慮請撥打電話(02)2533-3333詢問</strong></p><br>
+        <button onclick="closeModal()" class="modal-btn">我知道了</button>
+    </div>
+
+    <!-- 新增感謝視窗 -->
+    <div id="thankYouModal" class="alert-modal" style="display: none;">
+        <h2>感謝您的熱情參與</h2>
+        <p>請至您的gmail查看報名資訊是否正確，<strong>若有疑慮請撥打電話(02)2533-3333 詢問</strong></p>
+        <button onclick="closeThankYouModal()" class="modal-btn">我知道了</button>
+    </div>
+
+    <!-- 頂部信息欄 -->
+    <div class="header__top">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6 col-md-6">
+                    <div class="header__top__left">
+                        <p>老吾老以及人之老，用愛與關懷，形成善的循環</p>
+                    </div>
+                </div>
+                <div class="col-lg-6 col-md-6">
+                    <div class="header__top__right">
+                        <a href="#"><i class="fa fa-envelope"></i> info@old.org.tw</a>
+                        <a href="#"><i class="fa fa-phone"></i> (02)2533-3333</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Header區域 -->
+    <header class="header">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="header__logo text-center">
+                        <h1>財團法人台北市老人基金會</h1>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- 主導航欄 -->
+    <div class="header__menu">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <nav class="header__menu">
+                        <ul>
+                            <li>
+                                <a href="#">關於我們</a>
+                                <div class="submenu">
+                                    <a href="group.htm">基金會分會</a>
+                                    <a href="journal.htm">基金會記事</a>
+                                </div>
+                            </li>
+                            <li>
+                                <a href="#">長者服務與資源</a>
+                                <div class="submenu">
+                                    <a href="sponsorship.htm">長者助養</a>
+                                    <a href="rescue.htm">長者救援與協尋</a>
+                                    <a href="subsidies.ver2.htm">長者補助與津貼</a>
+                                    <a href="donate.htm">愛心輕鬆給，長輩笑到飛！</a>
+                                </div>
+                            </li>
+                            <li>
+                                <a href="facilities.htm">福利設施</a>
+                            </li>
+                            <li>
+                                <a href="#">看護/住宿照顧</a>
+                                <div class="submenu">
+                                    <a href="foreign.care.htm">申請外籍看護</a>
+                                    <a href="local.care.htm">申請本國看護</a>
+                                </div>
+                            </li>
+                            <li>
+                                <a href="finaancial_statement.htm">財務報告</a>
+                            </li>
+                            <li>
+                                <a href="#">相關網站</a>
+                                <div class="submenu">
+                                    <a href="https://dosw.gov.taipei/" >台北市政府社會局</a>
+                                    <a href="https://1957.mohw.gov.tw" >1957福利諮詢專線</a>
+                                    <a href="https://www.sfaa.gov.tw/" >衛福部社會及家庭署</a>
+                                </div>
+                            </li>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Hero Section -->
+    <section class="hero" style="background-image: url('/api/placeholder/1200/600');">
+        <div class="container">
+            <div class="hero__text">
+                <h1>財團法人台北市老人基金會</h1>
+                <div class="moving-text">
+                    用愛與關懷，形成善的循環
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 新增台灣高齡化趨勢區塊 -->
+    <section class="aging-trend">
+        <div class="container">
+            <div class="section-title">
+                <h2>台灣高齡化趨勢</h2>
+            </div>
+            <div class="row">
+                <div class="col-lg-4 col-md-4">
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fa fa-users"></i>
+                        </div>
+                        <div class="stat-value">17.7%</div>
+                        <div class="stat-change">+0.8%</div>
+                        <div class="stat-label">老年人口比例</div>
+                        <p class="mt-3 small text-muted">台灣65歲以上人口占總人口比例達標準</p>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-4">
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fa fa-balance-scale"></i>
+                        </div>
+                        <div class="stat-value">41.5%</div>
+                        <div class="stat-change">+1.2%</div>
+                        <div class="stat-label">扶老比</div>
+                        <p class="mt-3 small text-muted">每100名工作年齡人口需要扶養老年人口數</p>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-4">
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fa fa-heartbeat"></i>
+                        </div>
+                        <div class="stat-value">80.9歲</div>
+                        <div class="stat-change">+0.2歲</div>
+                        <div class="stat-label">平均壽命</div>
+                        <p class="mt-3 small text-muted">台灣人平均健康壽命達標</p>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-12 text-center">
+                    <a href="https://pop-proj.ndc.gov.tw/Custom_Fast_Search.aspx?n=7&sms=0" target="_blank" class="trend-btn">前往完整資料庫</a>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="trend-panel">
+                        <h4>國家發展委員會人口推估調查系統</h4>
+                        <p>了解全台人口結構變遷趨勢，掌握未來老年照護需求</p>
+                        <!-- 以下為新增區塊插入內容，插入至 aging-trend 區塊中的 trend-panel 內部，取代原有的圖表與按鈕區塊 -->
+
+<!-- 年齡分布 -->
+<div class="trend-panel">
+    <h4>年齡分布</h4>
+    <p>透過年齡分布資料可瞭解台灣人口老化的速度與高齡族群成長趨勢，協助政策與資源配置。</p>
+    <div class="text-center">
+        <a href="https://pop-proj.ndc.gov.tw/Custom_Fast_Search.aspx?n=7&sms=0" target="_blank" class="trend-btn">點我快速查詢</a>
+    </div>
+</div>
+
+<!-- 區域分布 -->
+<div class="trend-panel">
+    <h4>區域分布</h4>
+    <p>不同縣市的人口結構分布顯示出資源需求與照護服務的區域差異，是地方政策調整的重要依據。</p>
+    <div class="text-center">
+        <a href="https://plotdb.com/chart/12706/v1/" target="_blank" class="trend-btn">點我看各縣市老人分布圖</a>
+    </div>
+</div>
+
+<!-- 未來趨勢 -->
+<div class="trend-panel">
+    <h4>未來趨勢</h4>
+    <p>依據長期人口推估模型，分析未來數十年台灣人口的變化趨勢，預測未來高齡化社會的挑戰與應對方向。</p>
+    <div class="text-center">
+        <a href="https://pop-proj.ndc.gov.tw/Custom_Detail_Search_Main.aspx?n=8&sms=0" target="_blank" class="trend-btn">點我看詳細資訊</a>
+    </div>
+</div>
+
+                        <div class="text-right mt-3">
+                            <small>資料來源：國家發展委員會人口推估資料庫系統</small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 最新消息區塊 -->
+    <section class="latest-news">
+        <div class="container">
+            <div class="section-title">
+                <h2>最新消息</h2>
+            </div>
+            <div class="row">
+                <div class="col-lg-6">
+                    <h3>老人服務</h3>
+                    <div id="pastActivities" class="row"></div>
+                </div>
+                <div class="col-lg-6">
+                    <h3>社會志工</h3>
+                    <div id="upcomingActivities" class="row"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 關於我們區塊 -->
+    <section class="about-section">
+        <div class="container">
+            <div class="section-title">
+                <h2>關於財團法人台北市基金會</h2>
+            </div>
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="about-text">
+                        <p>財團法人台北市老人基金會於民國76年(1987)7月20日經台北市政府社會局核准設立，以「老吾老以及人之老」為服務宗旨。在因應時代環境的老人需求下，陸續成立助養組、防護組、協尋祖、救援組，以貧困、孤苦、遭棄養的老人為主要協助對象，90年起成立服務組，使服務範疇擴及一般老人。老人基金會在台北立案，但服務範圍遍及台灣和正在進行的大陸，我們以犧牲、奉獻、卑微的心態，尊重、關懷老年人，期望竭盡所能的協助需要協助的老人。</p>
+                        <p>The Taipei City Old People's Foundation was established in July of the Republic of China (July 20) by the Taipei Municipal Government Social Bureau on July 20, with the aim of "old and old". In response to the needs of the elderly in the age of the times, the support groups, the protection team, the association ancestors and the rescue team were successively established. The poor, lonely and abandoned elderly people were the main targets. Since 1990, the service group has been established to make the service scope Expand to the general elderly. The Foundation for the Elderly has set up a case in Taipei, but the service covers Taiwan and the ongoing mainland. We respect and care for the elderly with sacrifice, dedication, and humble attitude. We look forward to doing our best to assist the elderly who need assistance.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Google Map 區塊 -->
+    <section class="map-section">
+        <div class="container">
+            <div class="section-title">
+                <h2>基金會位置</h2>
+            </div>
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="map-container">
+                        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3613.543001205466!2d121.5535889!3d25.083474000000002!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3442ac118c6bddc1%3A0xdfcea5f8f0da2282!2zMTA0OTHlj7DljJfluILkuK3lsbHljYDmlazmpa3kuIDot68xMjjlt7c0MeiZnzIg5LmLIDI!5e0!3m2!1szh-TW!2stw!4v1743815432691!5m2!1szh-TW!2stw" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                    </div>
+                    <div class="text-center mt-4">
+                        <p><i class="fa fa-map-marker-alt mr-2"></i>地址：104臺北市中山區敬業一路128巷41號2樓之2</p>
+                        <p><i class="fa fa-subway mr-2"></i>交通：捷運劍南路站步行約10分鐘</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4 col-md-6 col-sm-6">
+                    <div class="footer__widget">
+                        <h6>聯絡資訊</h6>
+                        <p>地址：104臺北市中山區敬業一路128巷41號2樓之2</p>
+                        <p>電話：(02)2533-3333</p>
+                        <p>傳真：(02)2533-9999</p>
+                        <p>郵政劃撥：19181717</p>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6 col-sm-6">
+                    <div class="footer__widget">
+                        <h6>關於我們</h6>
+                        <p>財團法人台北市老人基金會以「老吾老以及人之老」為服務宗旨，專注於協助貧困、孤苦、遭棄養的老人。</p>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-12">
+                    <div class="footer__widget">
+                        <h6>訂閱電子報</h6>
+                        <p>獲取我們的最新活動和募資訊息</p>
+                        <form action="#">
+                            <input type="email" placeholder="輸入您的電子郵件" style="width: 100%; padding: 10px; margin-bottom: 10px; border: 1px solid #333; border-radius: 5px;">
+                            <button type="submit" class="modal-btn">訂閱</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div class="footer__copyright">
+                <div class="row">
+                    <div class="col-lg-12 text-center">
+                        <p>76.7.20北市社四字第33240號</p>
+                        <p>Copyright © 2025 90.am rights reserved.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Js Plugins -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/4.6.2/js/bootstrap.min.js"></script>
+    
+    <script>
+        // 警告視窗控制
+        window.onload = function() {
+            document.getElementById('alertModal').style.display = 'block';
+        }
+
+        function closeModal() {
+            document.getElementById('alertModal').style.display = 'none';
+        }
+
+        function closeThankYouModal() {
+            document.getElementById('thankYouModal').style.display = 'none';
+        }
+
+        // 動態載入過去活動記錄
+        function loadPastActivities() {
+            const container = document.getElementById('pastActivities');
+            const activities = [
+                {
+                    date: '2025-01-15',
+                    name: '長者關懷活動',
+                    volunteers: 20,
+                    image: 'main-1.png'
+                },
+                {
+                    date: '2024-12-20',
+                    name: '銀髮族健康講座',
+                    volunteers: 15,
+                    image: 'main-3.png'
+                }
+            ];
+            activities.forEach(activity => {
+                const card = document.createElement('div');
+                card.className = 'col-lg-12';
+                card.innerHTML = `
+                    <div class="activity-card">
+                        <div class="activity-img">
+                            <img src="${activity.image}" alt="${activity.name}">
+                        </div>
+                        <div class="activity-content">
+                            <h4>${activity.name}</h4>
+                            <p>日期：${activity.date}</p>
+                            <p>招募志工人數：${activity.volunteers}人</p>
+                            <form class="feedback-form" onsubmit="showThankYouModal(event)">
+                                <input type="text" placeholder="姓名" required>
+                                <input type="tel" placeholder="電話" required>
+                                <input type="text" placeholder="地址" required>
+                                <input type="text" placeholder="參與活動場次" required>
+                                <textarea placeholder="建議與回饋" rows="4" required></textarea>
+                                <button type="submit" class="modal-btn">提交回饋</button>
+                            </form>
+                        </div>
+                    </div>
+                `;
+                container.appendChild(card);
+            });
+        }
+        function showThankYouModal(event) {
+            event.preventDefault();
+            document.getElementById('thankYouModal').style.display = 'block';
+        }
+
+        // 動態載入即將舉辦的活動
+        function loadUpcomingActivities() {
+            const container = document.getElementById('upcomingActivities');
+            const activities = [
+                {
+                    date: '2025-03-01',
+                    name: '樂齡健康講座',
+                    volunteers: 15,
+                    image: 'main-2.png'
+                },
+                {
+                    date: '2025-03-15',
+                    name: '長者科技學習班',
+                    volunteers: 10,
+                    image: 'main-4.png'
+                }
+            ];
+
+            activities.forEach(activity => {
+                const card = document.createElement('div');
+                card.className = 'col-lg-12';
+                card.innerHTML = `
+                <div class="activity-card">
+                        <div class="activity-img">
+                            <img src="${activity.image}" alt="${activity.name}">
+                    <div id="carouselExample" class="carousel slide">
+                        </div>
+                        <div class="activity-content">
+                            <h4>${activity.name}</h4>
+                            <p>活動日期：${activity.date}</p>
+                            <p>招募志工人數：${activity.volunteers}人</p>
+                            <a href="#" class="activity-btn">查看詳情</a>
+                        </div>
+                    </div>
+                `;
+                container.appendChild(card);
+            });
+        }
+
+        // 頁面載入時執行
+        document.addEventListener('DOMContentLoaded', function() {
+            loadPastActivities();
+            loadUpcomingActivities();
+        });
+    </script>
+</body>
+</html>

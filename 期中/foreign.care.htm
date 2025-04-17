@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="keywords" content="90.am‧老人基金會‧老吾老以及人之老‧老人服務‧身障福利‧身障補助">
+    <title>申請外籍看護 | 財團法人台北市老人基金會</title>
+    
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@200;300;400;600;900&display=swap" rel="stylesheet">
+
+    <!-- Css Styles -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/4.6.2/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/elegant-icons/1.0.0/style.min.css" />
+
+    <style>
+        /* 主題顏色定義 - 參考Ogani樣式但調整為適合老人基金會 */
+        :root {
+            --primary-color: #7fad39; /* Ogani主色 */
+            --secondary-color: #2a4365;
+            --accent-color: #4a5568;
+            --text-color: #2d3748;
+            --light-bg: #f5f5f5;
+            --white: #ffffff;
+            --shadow-color: rgba(0, 0, 0, 0.1);
+            --footer-bg: #2a4365;
+        }
+
+        html, body {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            width: 100%;
+            overflow-x: hidden; /* 防止水平滾動條 */
+        }
+
+        body {
+            font-family: "Microsoft JhengHei", "Cairo", sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            background-color: var(--light-bg);
+        }
+
+        /* 基本連結樣式 */
+        a {
+            text-decoration: none;
+            color: var(--text-color);
+            transition: all 0.3s;
+        }
+
+        a:hover {
+            color: var(--primary-color);
+            text-decoration: none;
+        }
+
+        /* 標題樣式 */
+        h1, h2, h3, h4, h5, h6 {
+            font-weight: 600;
+            margin-bottom: 15px;
+        }
+
+        /* 頂部信息欄 */
+        .header__top {
+            background: var(--secondary-color);
+            padding: 10px 0;
+            width: 100%;
+        }
+
+        .header__top__left {
+            padding: 6px 0;
+        }
+
+        .header__top__left p {
+            color: var(--white);
+            margin-bottom: 0;
+        }
+
+        .header__top__right {
+            text-align: right;
+            padding: 6px 0;
+        }
+
+        .header__top__right a {
+            color: var(--white);
+            margin-right: 15px;
+            font-size: 14px;
+        }
+
+        .header__top__right a:hover {
+            color: var(--primary-color);
+        }
+
+        /* Logo區塊 */
+        .header__logo {
+            padding: 15px 0;
+        }
+
+        .header__logo h1 {
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--text-color);
+            margin-bottom: 0;
+        }
+
+        /* 返回按鈕 */
+        .back-button {
+            display: inline-block;
+            padding: 8px 20px;
+            background-color: var(--secondary-color);
+            color: var(--white);
+            border-radius: 4px;
+            margin-bottom: 20px;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+
+        .back-button:hover {
+            background-color: var(--primary-color);
+            color: var(--white);
+            text-decoration: none;
+        }
+
+        .back-button i {
+            margin-right: 5px;
+        }
+
+        /* 頁面標題 */
+        .page-title {
+            background: var(--white);
+            padding: 20px 30px;
+            border-radius: 5px;
+            box-shadow: 0 2px 10px var(--shadow-color);
+            margin-bottom: 30px;
+        }
+
+        .page-title h2 {
+            color: var(--text-color);
+            margin-bottom: 0;
+            font-size: 24px;
+        }
+
+        /* 表單和活動卡片 */
+        .activity-card {
+            background: var(--white);
+            border-radius: 5px;
+            box-shadow: 0 2px 10px var(--shadow-color);
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+
+        .activity-card h4 {
+            font-size: 20px;
+            font-weight: 700;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .feedback-form {
+            max-width: 500px;
+            margin: 0 auto;
+        }
+
+        .feedback-form input,
+        .feedback-form textarea {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #e5e5e5;
+            border-radius: 5px;
+            font-size: 14px;
+        }
+
+        .feedback-form textarea {
+            resize: vertical;
+        }
+
+        .feedback-form button {
+            background: var(--primary-color);
+            color: var(--white);
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            font-weight: 600;
+            cursor: pointer;
+            width: 100%;
+            transition: all 0.3s;
+        }
+
+        .feedback-form button:hover {
+            background: #5c8129;
+        }
+
+        /* Footer區塊 */
+        .footer-wrapper {
+            background: var(--footer-bg);
+            width: 100%;
+            margin: 0;
+            padding: 0;
+        }
+
+        .footer {
+            padding: 70px 0 0;
+            color: #b5b5b5;
+            margin-top: 50px;
+        }
+
+        .footer__widget {
+            margin-bottom: 30px;
+        }
+
+        .footer__widget h6 {
+            color: var(--white);
+            font-size: 16px;
+            margin-bottom: 20px;
+        }
+
+        .footer__widget p {
+            margin-bottom: 15px;
+        }
+
+        .footer__widget form input {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #333;
+            border-radius: 5px;
+            color: #333;
+        }
+
+        .footer__widget form button {
+            background: var(--primary-color);
+            color: var(--white);
+            border: none;
+            padding: 10px 28px;
+            border-radius: 30px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .footer__widget form button:hover {
+            background: #5c8129;
+        }
+
+        .footer__copyright {
+            padding: 20px 0;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            text-align: center;
+            margin-top: 40px;
+        }
+
+        .footer__copyright p {
+            margin-bottom: 0;
+        }
+
+        /* 響應式設計 */
+        @media (max-width: 992px) {
+            .sidebar {
+                margin-bottom: 30px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .sidebar {
+                margin-bottom: 30px;
+            }
+            
+            .page-title h2 {
+                font-size: 20px;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .header__logo h1 {
+                font-size: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- 頂部信息欄 -->
+    <div class="header__top">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6 col-md-6">
+                    <div class="header__top__left">
+                        <p>老吾老以及人之老，用愛與關懷，形成善的循環</p>
+                    </div>
+                </div>
+                <div class="col-lg-6 col-md-6">
+                    <div class="header__top__right">
+                        <a href="#"><i class="fa fa-envelope"></i> info@old.org.tw</a>
+                        <a href="#"><i class="fa fa-phone"></i> (02)2533-3333</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Header區域 -->
+    <header class="header">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="header__logo text-center">
+                        <h1>財團法人台北市老人基金會</h1>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- 主要內容區 -->
+    <section class="subsidies-section">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <a href="main.htm" class="back-button"><i class="fa fa-arrow-left"></i> 回到首頁</a>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="page-title">
+                        <h2>申請外籍看護</h2>       
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-12">
+                    <div style="text-align: center;">
+                        <h2>簡介</h2>  
+                    </div>
+                    <div>
+                        <h5>財團法人台北市老人基金會致力於協助有需求的家庭申請外籍看護工，為長者提供更好的照護服務。根據台灣勞動部規定，申請外籍看護工需符合特定條件，並完成相關流程。近年來，政府已放寬部分條件，例如特定年齡或疾病可免除功能評估，以減輕家庭負擔。我們提供以下資訊，幫助您了解申請流程及注意事項。</h5>     
+                    </div>
+                </div>
+            </div>
+            <div style="text-align: center;">
+                <h2>申請資格與條件<br></h2>
+            </div>
+            <div>
+                <p>申請外籍看護工需滿足以下條件：<br>
+                    - 照護對象需符合中央主管機關（如勞動部）規定的資格，例如持有重大傷病手冊或經評估有長期照護需求。<br>
+                    - 必須先進行本地招募，確認無法聘用本地看護工後才能申請外籍看護工。<br>
+                    - 特殊情況（例如75歲以上特定殘障者）可免除功能評估，詳見最新政策。<br>
+                    - 申請人需準備相關文件，包括身份證明、醫療評估報告等。</p>
+            </div>
+            <div style="text-align: center;">
+                <h2>申請流程<br></h2>
+            </div>
+            <div>
+                <ol>
+                    <li><strong>功能評估</strong>：至指定醫療機構進行專業評估，確認照護需求。若符合免評估條件（如持有重大傷病手冊），可跳過此步驟。</li>
+                    <li><strong>本地招募</strong>：需在全國就業資訊網公開招募至少7天，或3天加上2天報紙廣告。若無本地看護工應徵，可申請招募證明。</li>
+                    <li><strong>提交申請文件</strong>：準備申請表、身份證明文件影本、醫療評估報告、審查費收據等，提交至勞動部或相關單位。</li>
+                    <li><strong>安排外籍看護工到達</strong>：申請通過後，外籍看護工抵台時需進行導向訓練，訓練證書有效期5年。</li>
+                    <li><strong>後續管理</strong>：雇主需負責外籍看護工的食宿、健康安全等，並遵守相關法律規定。</li>
+                </ol>
+            </div>
+            <div style="text-align: center;">
+                <h2>注意事項<br></h2>
+            </div>
+            <div>
+                <p>- 申請過程中需遵守勞動部相關法規，例如不得無理由撤回需求，且原看護工未離台前不得新聘。<br>
+                    - 近期政策放寬，例如75歲以上特定殘障者可免評估，建議聯繫勞動部確認最新細節。<br>
+                    - 若外籍看護工失蹤或死亡，需於6個月內申請替補，否則可能影響後續申請權利。<br>
+                    - 詳細資訊可聯繫勞動部或當地社會福利部門。</p>
+            </div>
+            <div style="text-align: center;" class="activity-card">
+                <h4>申請外籍看護表單</h4>
+            </div>
+            <div class="activity-card">
+                <form class="feedback-form" onsubmit="showThankYouModal(event)">
+                    <input type="text" placeholder="申請人姓名" required><br>
+                    <input type="tel" placeholder="電話" required><br>
+                    <input type="text" placeholder="email:" required><br>
+                    <input type="text" placeholder="地址" required><br>
+                    <textarea placeholder="請描述照護需求或特殊情況" rows="4" required></textarea><br>
+                    <button type="submit" class="modal-btn">提交</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <div class="footer-wrapper">
+        <footer class="footer">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-4 col-md-6 col-sm-6">
+                        <div class="footer__widget">
+                            <h6>聯絡資訊</h6>
+                            <p>地址：104臺北市中山區敬業一路128巷41號2樓之2</p>
+                            <p>電話：(02)2533-3333</p>
+                            <p>傳真：(02)2533-9999</p>
+                            <p>郵政劃撥：19181717</p>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-6 col-sm-6">
+                        <div class="footer__widget">
+                            <h6>關於我們</h6>
+                            <p>財團法人台北市老人基金會以「老吾老以及人之老」為服務宗旨，專注於協助貧困、孤苦、遭棄養的老人。</p>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-12">
+                        <div class="footer__widget">
+                            <h6>訂閱電子報</h6>
+                            <p>獲取我們的最新活動和募資訊息</p>
+                            <form action="#">
+                                <input type="email" placeholder="輸入您的電子郵件">
+                                <button type="submit">訂閱</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <div class="footer__copyright">
+                    <div class="row">
+                        <div class="col-lg-12 text-center">
+                            <p>76.7.20北市社四字第33240號</p>
+                            <p>Copyright © 2025 90.am rights reserved.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    <script>
+        function showThankYouModal(event) {
+            event.preventDefault();
+            alert("感謝您的申請！我們將盡快與您聯繫。");
+            event.target.reset();
+        }
+    </script>
+</body>
+</html>

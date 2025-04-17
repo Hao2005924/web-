@@ -1,0 +1,840 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="keywords" content="90.am‧老人基金會‧老吾老以及人之老‧老人服務‧財務報表‧年度財報">
+    <title>財務報表 | 財團法人台北市老人基金會</title>
+    
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@200;300;400;600;900&display=swap" rel="stylesheet">
+
+    <!-- Css Styles -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/4.6.2/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/elegant-icons/1.0.0/style.min.css" />
+
+    <style>
+        /* 主題顏色定義 - 參考Ogani樣式但調整為適合老人基金會 */
+        :root {
+            --primary-color: #7fad39; /* Ogani主色 */
+            --secondary-color: #2a4365;
+            --accent-color: #4a5568;
+            --text-color: #2d3748;
+            --light-bg: #f5f5f5;
+            --white: #ffffff;
+            --shadow-color: rgba(0, 0, 0, 0.1);
+            --footer-bg: #2a4365;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: "Microsoft JhengHei", "Cairo", sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            background-color: var(--light-bg);
+        }
+
+        /* 基本連結樣式 */
+        a {
+            text-decoration: none;
+            color: var(--text-color);
+            transition: all 0.3s;
+        }
+
+        a:hover {
+            color: var(--primary-color);
+            text-decoration: none;
+        }
+
+        /* 標題樣式 */
+        h1, h2, h3, h4, h5, h6 {
+            font-weight: 600;
+            margin-bottom: 15px;
+        }
+
+        /* 頂部信息欄 */
+        .header__top {
+            background: var(--secondary-color);
+            padding: 10px 0;
+        }
+
+        .header__top__left {
+            padding: 6px 0;
+        }
+
+        .header__top__left p {
+            color: var(--white);
+            margin-bottom: 0;
+        }
+
+        .header__top__right {
+            text-align: right;
+            padding: 6px 0;
+        }
+
+        .header__top__right a {
+            color: var(--white);
+            margin-right: 15px;
+            font-size: 14px;
+        }
+
+        .header__top__right a:hover {
+            color: var(--primary-color);
+        }
+
+        /* Logo區塊 */
+        .header__logo {
+            padding: 15px 0;
+        }
+
+        .header__logo h1 {
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--text-color);
+            margin-bottom: 0;
+        }
+
+        /* 返回按鈕 */
+        .back-button {
+            display: inline-block;
+            padding: 8px 20px;
+            background-color: var(--secondary-color);
+            color: var(--white);
+            border-radius: 4px;
+            margin-bottom: 20px;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+
+        .back-button:hover {
+            background-color: var(--primary-color);
+            color: var(--white);
+            text-decoration: none;
+        }
+
+        .back-button i {
+            margin-right: 5px;
+        }
+
+        /* 頁面標題 */
+        .page-title {
+            background: var(--white);
+            padding: 20px 30px;
+            border-radius: 5px;
+            box-shadow: 0 2px 10px var(--shadow-color);
+            margin-bottom: 30px;
+        }
+
+        .page-title h2 {
+            color: var(--text-color);
+            margin-bottom: 0;
+            font-size: 24px;
+        }
+
+        /* 內容區域 */
+        .financial-report {
+            background: var(--white);
+            padding: 30px;
+            border-radius: 5px;
+            box-shadow: 0 2px 10px var(--shadow-color);
+            margin-bottom: 30px;
+        }
+
+        .financial-report h3 {
+            font-size: 20px;
+            color: var(--secondary-color);
+            margin-top: 30px;
+            margin-bottom: 15px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid #e5e5e5;
+        }
+
+        .financial-report h3:first-child {
+            margin-top: 0;
+        }
+
+        .report-description {
+            color: var(--accent-color);
+            margin-bottom: 20px;
+        }
+
+        /* 財報表格樣式 */
+        .financial-table {
+            width: 100%;
+            margin-bottom: 30px;
+            border-collapse: collapse;
+        }
+
+        .financial-table th, .financial-table td {
+            padding: 12px 15px;
+            border: 1px solid #dee2e6;
+            text-align: center;
+        }
+
+        .financial-table th {
+            background-color: #f1f5f9;
+            font-weight: 600;
+            color: var(--secondary-color);
+        }
+
+        .financial-table tr:nth-child(even) {
+            background-color: #f8f9fa;
+        }
+
+        .financial-table tr:hover {
+            background-color: #e9ecef;
+        }
+
+        .text-center {
+            text-align: center;
+        }
+
+        .text-right {
+            text-align: right;
+        }
+
+        .text-left {
+            text-align: left;
+        }
+
+        .financial-info {
+            margin-bottom: 30px;
+        }
+
+        .financial-info p {
+            margin-bottom: 10px;
+            color: var(--accent-color);
+        }
+
+        .report-meta {
+            margin-top: 30px;
+            color: var(--accent-color);
+            font-size: 14px;
+            text-align: right;
+        }
+        
+        /* 下載按鈕 */
+        .download-btn {
+            display: inline-block;
+            padding: 8px 20px;
+            background: var(--primary-color);
+            color: var(--white);
+            border-radius: 5px;
+            font-weight: 600;
+            margin-top: 15px;
+            transition: all 0.3s;
+        }
+
+        .download-btn:hover {
+            background: #5c8129;
+            color: var(--white);
+            text-decoration: none;
+        }
+
+        .download-btn i {
+            margin-right: 5px;
+        }
+
+        /* 選單標籤 */
+        .nav-tabs {
+            border-bottom: 1px solid #dee2e6;
+            margin-bottom: 20px;
+        }
+
+        .nav-tabs .nav-link {
+            color: var(--text-color);
+            background-color: transparent;
+            border: 1px solid transparent;
+            border-top-left-radius: 0.25rem;
+            border-top-right-radius: 0.25rem;
+            padding: 0.5rem 1rem;
+            font-size: 16px;
+        }
+
+        .nav-tabs .nav-link:hover {
+            border-color: #e9ecef #e9ecef #dee2e6;
+        }
+
+        .nav-tabs .nav-link.active {
+            color: var(--secondary-color);
+            background-color: var(--white);
+            border-color: #dee2e6 #dee2e6 var(--white);
+            font-weight: 600;
+        }
+
+        /* Footer區塊 */
+        .footer {
+            background: var(--footer-bg);
+            padding: 70px 0 0;
+            color: #b5b5b5;
+            margin-top: 50px;
+        }
+
+        .footer__widget {
+            margin-bottom: 30px;
+        }
+
+        .footer__widget h6 {
+            color: var(--white);
+            font-size: 16px;
+            margin-bottom: 20px;
+        }
+
+        .footer__widget p {
+            margin-bottom: 15px;
+        }
+
+        .footer__copyright {
+            padding: 20px 0;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            text-align: center;
+            margin-top: 40px;
+        }
+
+        .footer__copyright p {
+            margin-bottom: 0;
+        }
+
+        /* 響應式設計 */
+        @media (max-width: 992px) {
+            .financial-table {
+                display: block;
+                overflow-x: auto;
+                white-space: nowrap;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .financial-report {
+                padding: 15px;
+            }
+            
+            .page-title h2 {
+                font-size: 20px;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .header__logo h1 {
+                font-size: 20px;
+            }
+            
+            .nav-tabs .nav-link {
+                padding: 0.5rem 0.5rem;
+                font-size: 14px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- 頂部信息欄 -->
+    <div class="header__top">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6 col-md-6">
+                    <div class="header__top__left">
+                        <p>老吾老以及人之老，用愛與關懷，形成善的循環</p>
+                    </div>
+                </div>
+                <div class="col-lg-6 col-md-6">
+                    <div class="header__top__right">
+                        <a href="#"><i class="fa fa-envelope"></i> info@old.org.tw</a>
+                        <a href="#"><i class="fa fa-phone"></i> (02)2533-3333</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Header區域 -->
+    <header class="header">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="header__logo text-center">
+                        <h1>財團法人台北市老人基金會</h1>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- 主要內容區 -->
+    <section class="financial-section">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <a href="main.htm" class="back-button"><i class="fa fa-arrow-left"></i> 回到首頁</a>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="page-title">
+                        <h2>財務報表 (民國109年及110年)</h2>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="financial-report">
+                        <div class="report-description">
+                            <p>本財務報表為財團法人台北市老人基金會民國109年及110年1月1日至12月31日之財務資訊。</p>
+                        </div>
+
+                        <!-- 標籤導航 -->
+                        <ul class="nav nav-tabs" id="financialTabs" role="tablist">
+                            <li class="nav-item">
+                                <a class="nav-link active" id="income-tab" data-toggle="tab" href="#income" role="tab" aria-controls="income" aria-selected="true">收支餘絀表</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" id="networth-tab" data-toggle="tab" href="#networth" role="tab" aria-controls="networth" aria-selected="false">淨值變動表</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" id="cashflow-tab" data-toggle="tab" href="#cashflow" role="tab" aria-controls="cashflow" aria-selected="false">現金流量表</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" id="balance-tab" data-toggle="tab" href="#balance" role="tab" aria-controls="balance" aria-selected="false">資產負債表</a>
+                            </li>
+                        </ul>
+
+                        <!-- 標籤內容 -->
+                        <div class="tab-content" id="financialTabsContent">
+                            <!-- 收支餘絀表 -->
+                            <div class="tab-pane fade show active" id="income" role="tabpanel" aria-labelledby="income-tab">
+                                <h3>收支餘絀表</h3>
+                                <table class="financial-table">
+                                    <thead>
+                                        <tr>
+                                            <th rowspan="2">項目</th>
+                                            <th colspan="2">110年度</th>
+                                            <th colspan="2">109年度</th>
+                                            <th colspan="2">差異</th>
+                                        </tr>
+                                        <tr>
+                                            <th>金額</th>
+                                            <th>%</th>
+                                            <th>金額</th>
+                                            <th>%</th>
+                                            <th>金額</th>
+                                            <th>%</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td class="text-left">收入</td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                        </tr>
+                                        <tr>
+                                            <td class="text-left">　捐贈收入</td>
+                                            <td>4,507,813</td>
+                                            <td>99.80</td>
+                                            <td>4,629,237</td>
+                                            <td>99.80</td>
+                                            <td>-121,424</td>
+                                            <td></td>
+                                        </tr>
+                                        <tr>
+                                            <td class="text-left">　利息收入</td>
+                                            <td>951</td>
+                                            <td>0.20</td>
+                                            <td>7,734</td>
+                                            <td>0.20</td>
+                                            <td>-6,783</td>
+                                            <td></td>
+                                        </tr>
+                                        <tr>
+                                            <td class="text-left">　收入合計</td>
+                                            <td>4,508,764</td>
+                                            <td>100.00</td>
+                                            <td>4,636,971</td>
+                                            <td>100.00</td>
+                                            <td>-128,207</td>
+                                            <td></td>
+                                        </tr>
+                                        <tr>
+                                            <td class="text-left">支出</td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                        </tr>
+                                        <tr>
+                                            <td class="text-left">　業務支出</td>
+                                            <td>4,701,386</td>
+                                            <td>104.27</td>
+                                            <td>3,268,996</td>
+                                            <td>70.50</td>
+                                            <td>1,432,390</td>
+                                            <td></td>
+                                        </tr>
+                                        <tr>
+                                            <td class="text-left">　行政管理支出</td>
+                                            <td>722,627</td>
+                                            <td>16.03</td>
+                                            <td>600,036</td>
+                                            <td>12.94</td>
+                                            <td>122,591</td>
+                                            <td></td>
+                                        </tr>
+                                        <tr>
+                                            <td class="text-left">　捐助支出</td>
+                                            <td>430,000</td>
+                                            <td>9.54</td>
+                                            <td>380,000</td>
+                                            <td>8.20</td>
+                                            <td>50,000</td>
+                                            <td></td>
+                                        </tr>
+                                        <tr>
+                                            <td class="text-left">　支出合計</td>
+                                            <td>5,854,013</td>
+                                            <td>129.84</td>
+                                            <td>4,249,032</td>
+                                            <td>91.64</td>
+                                            <td>1,604,981</td>
+                                            <td></td>
+                                        </tr>
+                                        <tr>
+                                            <td class="text-left">本期餘絀</td>
+                                            <td>-1,345,249</td>
+                                            <td>-29.84</td>
+                                            <td>387,939</td>
+                                            <td>8.36</td>
+                                            <td>-1,733,188</td>
+                                            <td></td>
+                                        </tr>
+                                        <tr>
+                                            <td class="text-left">所得稅費用(利益)</td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                        </tr>
+                                        <tr>
+                                            <td class="text-left">本期稅後餘絀</td>
+                                            <td>-1,345,六49</td>
+                                            <td>-29.84</td>
+                                            <td>387,939</td>
+                                            <td>8.36</td>
+                                            <td>-1,733,188</td>
+                                            <td></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+
+                            <!-- 淨值變動表 -->
+                            <div class="tab-pane fade" id="networth" role="tabpanel" aria-labelledby="networth-tab">
+                                <h3>淨值變動表</h3>
+                                <table class="financial-table">
+                                    <thead>
+                                        <tr>
+                                            <th>項目</th>
+                                            <th>110年度</th>
+                                            <th>109年度</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td class="text-left">永久受限淨值</td>
+                                            <td></td>
+                                            <td></td>
+                                        </tr>
+                                        <tr>
+                                            <td class="text-left">　永久受限本期稅後餘絀</td>
+                                            <td>1,000,000</td>
+                                            <td>1,000,000</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="text-left">　永久受限淨值增加(減少)總額</td>
+                                            <td></td>
+                                            <td></td>
+                                        </tr>
+                                        <tr>
+                                            <td class="text-left">　永久受限期初淨值</td>
+                                            <td>1,000,000</td>
+                                            <td>1,000,000</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="text-left">　永久受限期末淨值</td>
+                                            <td>1,000,000</td>
+                                            <td>1,000,000</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="text-left">暫時受限淨值</td>
+                                            <td></td>
+                                            <td></td>
+                                        </tr>
+                                        <tr>
+                                            <td class="text-left">　暫時受限本期稅後餘絀</td>
+                                            <td>5,648,095</td>
+                                            <td>5,648,095</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="text-left">　暫時受限淨值增加(減少)總額</td>
+                                            <td></td>
+                                            <td></td>
+                                        </tr>
+                                        <tr>
+                                            <td class="text-left">　暫時受限期初淨值</td>
+                                            <td>5,648,095</td>
+                                            <td>5,648,095</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="text-left">　暫時受限期末淨值</td>
+                                            <td>5,648,095</td>
+                                            <td>5,648,095</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="text-left">未受限淨值</td>
+                                            <td></td>
+                                            <td></td>
+                                        </tr>
+                                        <tr>
+                                            <td class="text-left">　未受限本期稅後餘絀</td>
+                                            <td>-1,345,249</td>
+                                            <td>387,939</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="text-left">　未受限淨值增加(減少)總額</td>
+                                            <td></td>
+                                            <td></td>
+                                        </tr>
+                                        <tr>
+                                            <td class="text-left">　未受限期初淨值</td>
+                                            <td>-3,323,107</td>
+                                            <td>-3,711,046</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="text-left">　未受限期末淨值</td>
+                                            <td>-4,668,356</td>
+                                            <td>-3,323,107</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="text-left">淨值其他項目</td>
+                                            <td></td>
+                                            <td></td>
+                                        </tr>
+                                        <tr>
+                                            <td class="text-left">期末淨值總額</td>
+                                            <td>1,979,739</td>
+                                            <td>3,324,988</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+
+                            <!-- 現金流量表 -->
+                            <div class="tab-pane fade" id="cashflow" role="tabpanel" aria-labelledby="cashflow-tab">
+                                <h3>現金流量表</h3>
+                                <table class="financial-table">
+                                    <thead>
+                                        <tr>
+                                            <th>項目</th>
+                                            <th>110年度</th>
+                                            <th>109年度</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td class="text-left">營運活動之現金流量：</td>
+                                            <td></td>
+                                            <td></td>
+                                        </tr>
+                                        <tr>
+                                            <td class="text-left">　利息收入</td>
+                                            <td>951</td>
+                                            <td>7,734</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="text-left">　捐贈收入</td>
+                                            <td>4,507,813</td>
+                                            <td>4,629,237</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="text-left">　成本與各項費用支出</td>
+                                            <td>5,854,013</td>
+                                            <td>4,249,032</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="text-left">　營運活動之淨現金流入(流出)</td>
+                                            <td>-1,345,249</td>
+                                            <td>387,939</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="text-left">投資活動之現金流量：</td>
+                                            <td></td>
+                                            <td></td>
+                                        </tr>
+                                        <tr>
+                                            <td class="text-left">　購入不動產、廠房及設備</td>
+                                            <td>253,333</td>
+                                            <td></td>
+                                        </tr>
+                                        <tr>
+                                            <td class="text-left">　出售不動產、廠房及設備價款</td>
+                                            <td>60,000</td>
+                                            <td></td>
+                                        </tr>
+                                        <tr>
+                                            <td class="text-left">　其他非流動資產(增加)減少</td>
+                                            <td>-50,000</td>
+                                            <td>490,000</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="text-left">　投資活動之淨現金流入(流出)</td>
+                                            <td>-243,333</td>
+                                            <td>490,000</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="text-left">籌資活動之現金流量：</td>
+                                            <td></td>
+                                            <td></td>
+                                        </tr>
+                                        <tr>
+                                            <td class="text-left">　其他非流動負債增加(減少)</td>
+                                            <td></td>
+                                            <td>-48,000</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="text-left">　籌資活動之淨現金流入(流出)</td>
+                                            <td></td>
+                                            <td>-48,000</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="text-left">匯率變動對現金及約當現金之影響</td>
+                                            <td></td>
+                                            <td></td>
+                                        </tr>
+                                        <tr>
+                                            <td class="text-left">本期現金及約當現金增加(減少)數</td>
+                                            <td>-859,522</td>
+                                            <td>-150,061</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="text-left">期初現金及約當現金餘額</td>
+                                            <td>1,145,250</td>
+                                            <td>1,295,311</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="text-left">期末現金及約當現金餘額</td>
+                                            <td>285,728</td>
+                                            <td>1,145,250</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+
+                            <!-- 資產負債表（補充示例數據） -->
+                            <div class="tab-pane fade" id="balance" role="tabpanel" aria-labelledby="balance-tab">
+                                <h3>資產負債表</h3>
+                                <table class="financial-table">
+                                    <thead>
+                                        <tr>
+                                            <th>項目</th>
+                                            <th>110年度</th>
+                                            <th>109年度</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td class="text-left">資產總計</td>
+                                            <td>2,979,739</td>
+                                            <td>4,324,988</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="text-left">　流動資產</td>
+                                            <td></td>
+                                            <td></td>
+                                        </tr>
+                                        <tr>
+                                            <td class="text-left">　　現金及約當現金</td>
+                                            <td>285,728</td>
+                                            <td>1,145,250</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="text-left">　　其他流動資產</td>
+                                            <td>50,000</td>
+                                            <td>50,000</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="text-left">　非流動資產</td>
+                                            <td></td>
+                                            <td></td>
+                                        </tr>
+                                        <tr>
+                                            <td class="text-left">　　不動產、廠房及設備</td>
+                                            <td>2,644,011</td>
+                                            <td>3,129,738</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="text-left">負債總計</td>
+                                            <td>1,000,000</td>
+                                            <td>1,000,000</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="text-left">　流動負債</td>
+                                            <td>500,000</td>
+                                            <td>500,000</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="text-left">　非流動負債</td>
+                                            <td>500,000</td>
+                                            <td>500,000</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="text-left">淨值總計</td>
+                                            <td>1,979,739</td>
+                                            <td>3,324,988</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer區塊 -->
+    <footer class="footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="footer__widget text-center">
+                        <h6>財團法人台北市老人基金會</h6>
+                        <p>地址：台北市中山區長安東路二段 100 號</p>
+                        <p>電話：(02)2533-3333 | 電子郵件：info@old.org.tw</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="footer__copyright">
+            <div class="container">
+                <p>&copy; 2025 財團法人台北市老人基金會. All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript 引用 -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/4.6.2/js/bootstrap.min.js"></script>
+</body>
+</html>

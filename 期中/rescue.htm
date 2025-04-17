@@ -1,0 +1,646 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="keywords" content="90.am‧老人基金會‧老吾老以及人之老‧老人服務‧身障福利‧身障補助">
+    <title> 長者服務與資源——老人救援與協尋 | 財團法人台北市老人基金會</title>
+    
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@200;300;400;600;900&display=swap" rel="stylesheet">
+
+    <!-- Css Styles -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/4.6.2/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/elegant-icons/1.0.0/style.min.css" />
+
+    <style>
+        /* 主題顏色定義 - 參考Ogani樣式但調整為適合老人基金會 */
+        :root {
+            --primary-color: #7fad39; /* Ogani主色 */
+            --secondary-color: #2a4365;
+            --accent-color: #4a5568;
+            --text-color: #2d3748;
+            --light-bg: #f5f5f5;
+            --white: #ffffff;
+            --shadow-color: rgba(0, 0, 0, 0.1);
+            --footer-bg: #2a4365;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: "Microsoft JhengHei", "Cairo", sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            background-color: var(--light-bg);
+        }
+
+        /* 基本連結樣式 */
+        a {
+            text-decoration: none;
+            color: var(--text-color);
+            transition: all 0.3s;
+        }
+
+        a:hover {
+            color: var(--primary-color);
+            text-decoration: none;
+        }
+
+        /* 標題樣式 */
+        h1, h2, h3, h4, h5, h6 {
+            font-weight: 600;
+            margin-bottom: 15px;
+        }
+
+        /* 頂部信息欄 */
+        .header__top {
+            background: var(--secondary-color);
+            padding: 10px 0;
+        }
+
+        .header__top__left {
+            padding: 6px 0;
+        }
+
+        .header__top__left p {
+            color: var(--white);
+            margin-bottom: 0;
+        }
+
+        .header__top__right {
+            text-align: right;
+            padding: 6px 0;
+        }
+
+        .header__top__right a {
+            color: var(--white);
+            margin-right: 15px;
+            font-size: 14px;
+        }
+
+        .header__top__right a:hover {
+            color: var(--primary-color);
+        }
+
+        /* Logo區塊 */
+        .header__logo {
+            padding: 15px 0;
+        }
+
+        .header__logo h1 {
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--text-color);
+            margin-bottom: 0;
+        }
+
+        /* 返回按鈕 */
+        .back-button {
+            display: inline-block;
+            padding: 8px 20px;
+            background-color: var(--secondary-color);
+            color: var(--white);
+            border-radius: 4px;
+            margin-bottom: 20px;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+
+        .back-button:hover {
+            background-color: var(--primary-color);
+            color: var(--white);
+            text-decoration: none;
+        }
+
+        .back-button i {
+            margin-right: 5px;
+        }
+
+        /* 頁面標題 */
+        .page-title {
+            background: var(--white);
+            padding: 20px 30px;
+            border-radius: 5px;
+            box-shadow: 0 2px 10px var(--shadow-color);
+            margin-bottom: 30px;
+        }
+
+        .page-title h2 {
+            color: var(--text-color);
+            margin-bottom: 0;
+            font-size: 24px;
+        }
+
+        /* 側邊欄區域 */
+        .sidebar {
+            background: var(--white);
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 2px 10px var(--shadow-color);
+            margin-bottom: 30px;
+        }
+
+        .sidebar__title {
+            font-size: 18px;
+            color: var(--text-color);
+            font-weight: 700;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid #e5e5e5;
+        }
+
+        .sidebar__filter {
+            margin-bottom: 25px;
+        }
+
+        .sidebar__filter select {
+            width: 100%;
+            height: 40px;
+            border: 1px solid #e5e5e5;
+            border-radius: 5px;
+            padding: 0 15px;
+            font-size: 14px;
+            margin-bottom: 10px;
+        }
+
+        .sidebar__filter label {
+            font-size: 14px;
+            display: block;
+            margin-bottom: 5px;
+            color: var(--accent-color);
+        }
+
+        .filter-btn {
+            background: var(--primary-color);
+            color: var(--white);
+            border: none;
+            padding: 8px 20px;
+            border-radius: 5px;
+            font-weight: 600;
+            cursor: pointer;
+            width: 100%;
+            transition: all 0.3s;
+        }
+
+        .filter-btn:hover {
+            background: #5c8129;
+        }
+
+        /* Footer區塊 */
+        .footer {
+            background: var(--footer-bg);
+            padding: 70px 0 0;
+            color: #b5b5b5;
+            margin-top: 50px;
+        }
+
+        .footer__widget {
+            margin-bottom: 30px;
+        }
+
+        .footer__widget h6 {
+            color: var(--white);
+            font-size: 16px;
+            margin-bottom: 20px;
+        }
+
+        .footer__widget p {
+            margin-bottom: 15px;
+        }
+
+        .footer__copyright {
+            padding: 20px 0;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            text-align: center;
+            margin-top: 40px;
+        }
+
+        .footer__copyright p {
+            margin-bottom: 0;
+        }
+         /* 最新消息區塊 */
+        .latest-news {
+            padding: 80px 0;
+            background: var(--white);
+        }
+
+        /* 活動卡片樣式 */
+        .activity-card {
+            margin-bottom: 30px;
+            border-radius: 5px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px var(--shadow-color);
+            transition: all 0.3s;
+        }
+
+        .activity-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .activity-img {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .activity-img img {
+            width: 100%;
+            transition: all 0.5s;
+        }
+
+        .activity-img:hover img {
+            transform: scale(1.05);
+        }
+
+        .activity-content {
+            padding: 20px;
+            background: var(--white);
+        }
+
+        .activity-content h4 {
+            font-size: 18px;
+            margin-bottom: 10px;
+        }
+
+        .activity-content p {
+            color: var(--accent-color);
+            margin-bottom: 10px;
+        }
+
+        .activity-btn {
+            background: var(--primary-color);
+            color: var(--white);
+            padding: 8px 20px;
+            border-radius: 30px;
+            display: inline-block;
+            font-size: 14px;
+            font-weight: 600;
+        }
+
+        .activity-btn:hover {
+            background: #5c8129;
+            color: var(--white);
+        }
+        /* 表單樣式 */
+        .feedback-form {
+            margin-top: 20px;
+        }
+
+        .feedback-form input,
+        .feedback-form textarea {
+            width: 100%;
+            padding: 12px 15px;
+            margin-bottom: 15px;
+            border: 1px solid #e5e5e5;
+            border-radius: 5px;
+            font-size: 14px;
+        }
+        /* 區塊標題 */
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .section-title h2 {
+            color: var(--text-color);
+            font-weight: 700;
+            position: relative;
+            display: inline-block;
+            padding-bottom: 15px;
+        }
+
+        .section-title h2:after {
+            position: absolute;
+            content: "";
+            width: 50%;
+            height: 3px;
+            left: 25%;
+            bottom: 0;
+            background: var(--primary-color);
+        }
+
+        /* 載入中動畫 */
+        .loading {
+            text-align: center;
+            padding: 50px 0;
+            display: none;
+        }
+
+        .loading i {
+            font-size: 36px;
+            color: var(--primary-color);
+            animation: spin 1s infinite linear;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        /* 響應式設計 */
+        @media (max-width: 992px) {
+            .sidebar {
+                margin-bottom: 30px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .sidebar {
+                margin-bottom: 30px;
+            }
+            
+            .page-title h2 {
+                font-size: 20px;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .header__logo h1 {
+                font-size: 20px;
+            }
+            
+            .subsidy-card {
+                padding: 15px;
+            }
+            
+            .subsidy-card__title {
+                font-size: 16px;
+            }
+        }
+        .article-nav ul {
+    list-style: disc;
+    padding-left: 40px;
+        }
+        .grid-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+      gap: 20px;
+    }
+        .card {
+      display: flex;
+      background-color: #e3f2fd;
+      border-radius: 10px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+      margin-bottom: 20px;
+      padding: 15px;
+      max-width: 1000px;
+    }
+
+    .card img {
+      width: 150px;
+      height: 200px;
+      object-fit: cover;
+      border-radius: 5px;
+      margin-right: 20px;
+    }
+    .card-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.card-row {
+  display: grid;
+  grid-template-columns: 80px 1fr;
+  row-gap: 8px;
+  font-size: 14px;
+  margin-bottom: 10px;
+}
+
+    .card-details {
+      display: grid;
+      grid-template-columns: 120px 1fr;
+      row-gap: 8px;
+      column-gap: 10px;
+    }
+
+    .card-details div {
+      font-size: 16px;
+    }
+
+    .label {
+      font-weight: bold;
+      text-align: right;
+      color: #333;
+    }
+
+    .value {
+      color: #222;
+    }
+    </style>
+</head>
+<body>
+    <!-- 頂部信息欄 -->
+    <div class="header__top">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6 col-md-6">
+                    <div class="header__top__left">
+                        <p>老吾老以及人之老，用愛與關懷，形成善的循環</p>
+                    </div>
+                </div>
+                <div class="col-lg-6 col-md-6">
+                    <div class="header__top__right">
+                        <a href="#"><i class="fa fa-envelope"></i> info@old.org.tw</a>
+                        <a href="#"><i class="fa fa-phone"></i> (02)2533-3333</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Header區域 -->
+    <header class="header">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="header__logo text-center">
+                        <h1>財團法人台北市老人基金會</h1>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- 主要內容區 -->
+    <section class="subsidies-section">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <a href="main.htm" class="back-button"><i class="fa fa-arrow-left"></i> 回到首頁</a>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="page-title">
+                        <h2>長者服務與資源——老人救援與協尋</h2>       
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!--簡介區-->
+    <div class="row">
+        <div class="col-lg-12">
+            <div style="text-align: center;" >
+                <h2>簡介</h2>  
+            </div>
+            <div  style="text-align: center;" >
+                <p>老人基金會設置救援與協尋組，
+                    廿四小時全年無休的協助需要緊急協助的老人；<br></p>
+            </div>
+                <nav class="article-nav">
+                    <ul>
+                        <li>81年規劃製作「生命關懷、愛心連線」系統，連線及監控獨居老人緊急通報；<br></li>
+                        <li>83年配合無線電計程車聯誼會中七千輛駕駛成立救援大隊，並訓練五佰位救援隊員，機動救援散居各地獨居老人；<br></li>
+                        <li>86年成立「中途之家」安置受虐、迷途老人；<br></li>
+                        <li>88年921地震第二天趕赴災區，搜尋各處老人，並安置於中部地區各養護機構，設立災區各地服務中心，服務五年；<br></li>
+                        <li>89年協助台灣各地設置獨居老人緊急通報連線。<br></li>
+                    </ul>
+                </nav>
+            <div style="text-align: center;" >
+                <p>基金會感謝各地勤務指揮中心和各地醫療機構熱心配合、也為曾經受救援、協助的老人，向救援隊員致上最高謝意。<br>
+                    由於長者健忘為正常現象，可是當老人在外時，記憶中最重要的姓名、電話、地址卻從記憶中消失，
+                    建議家中的老人衣服上寫上電話號碼。<br></p>     
+            </div>
+        </div>
+    </div>
+<!--協尋頁-->
+    <div style="text-align: center;" >
+        <h2>協尋列表</h2>
+    </div> 
+
+
+
+<div class="grid-container">
+    <!-- Card 1 -->
+    <div class="card">
+      <img src="rescue.png" alt="走失者照片">
+      <div class="card-row">
+        <div class="label">姓名：</div><div class="value">張小明</div>
+        <div class="label">性別：</div><div class="value">男</div>
+        <div class="label">年齡：</div><div class="value">78</div>
+        <div class="label">走失地點：</div><div class="value">台北市信義區</div>
+        <div class="label">走失時間：</div><div class="value">2025/04/10 14:00</div>
+        <div class="label">特徵：</div><div class="value">紅色帽子、患有糖尿病</div>
+        <div class="label">聯絡電話：</div><div class="value">0912-345-678</div>
+      </div>
+    </div>
+
+    <!-- Card 2 -->
+    <div class="card">
+      <img src="rescue.2.jpg" alt="走失者照片">
+      <div class="card-details">
+        <div class="label">姓名：</div><div class="value">王大大</div>
+        <div class="label">性別：</div><div class="value">女</div>
+        <div class="label">年齡：</div><div class="value">87</div>
+        <div class="label">走失地點：</div><div class="value">新北市新莊區</div>
+        <div class="label">走失時間：</div><div class="value">2025/04/09 08:30</div>
+        <div class="label">特徵：</div><div class="value">微胖、行動不便</div>
+        <div class="label">聯絡電話：</div><div class="value">0987-987-987</div>
+      </div>
+    </div>
+
+  </div>
+   <div class="pagination-controls text-center" style="margin-top: 30px;">
+    <button id="prevPage" class="btn btn-secondary">上一頁</button>
+    <button id="nextPage" class="btn btn-primary">下一頁</button>
+   </div>
+
+    
+    <!--通報走失區-->
+        <section class="latest-news">
+            <div class="container">
+                <div class="section-title">
+                    <h2>通報走失區</h2>
+                </div>
+            </div>
+        </section>
+
+
+        <div class="activity-content">
+            <h3>走失通報</h3>
+            <p>請填上走失者詳細資訊</p>
+            <form class="feedback-form" onsubmit="showThankYouModal(event)">
+                <input type="text" placeholder="走失姓名" required>
+                <input type="tel" placeholder="走失者年齡" required>
+                <input type="text" placeholder="走失者性別" required>
+                <input type="text" placeholder="走失者時間" required>
+                <input type="text" placeholder="走失者地點" required>
+                <input type="text" placeholder="走失者當下穿著" required>
+                <textarea placeholder="上傳照片" rows="4" required></textarea>
+                <textarea placeholder="聯絡人資訊" rows="4" required></textarea>
+                <textarea placeholder="備註" rows="4" ></textarea>
+                <button type="submit" class="back-button">提交回饋</button>
+            </form>
+        </div>
+    <!--緊急聯絡資訊-->
+    <section class="latest-news">
+        <div class="container">
+            <div class="section-title">
+                <h2>緊急聯絡資訊</h2>
+            </div>
+        </div>
+    </section>
+
+    <nav class="article-nav">
+        <ul>
+            <li><h4>台北市政府社會局關懷專線：1999 轉 8995 或 02-2720-8889（外縣市請撥完整電話）</h4><br></li>
+            <li><h4>台北市政府警察局失蹤人口協尋專線：02-2381-7494（24小時）</h4><br></li>
+            <li><h4>內政部警政署失蹤人口通報專線：110（全國通報專線）</h4><br></li>
+            <li><h4>臺北市安心專線：1999（外縣市請撥 02-27208889）轉 7024 或 7025</h4><br></li>
+        </ul>
+    </nav>
+    <div style="text-align: center;"><span style="color: darkgreen;">
+        <p>若情況緊急，直接撥打 110 報警處理，同時也可以聯繫台北市政府的1999市民熱線轉接社會局</p></span>
+    </div>
+
+
+</body>
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4 col-md-6 col-sm-6">
+                    <div class="footer__widget">
+                        <h6>聯絡資訊</h6>
+                        <p>地址：104臺北市中山區敬業一路128巷41號2樓之2</p>
+                        <p>電話：(02)2533-3333</p>
+                        <p>傳真：(02)2533-9999</p>
+                        <p>郵政劃撥：19181717</p>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6 col-sm-6">
+                    <div class="footer__widget">
+                        <h6>關於我們</h6>
+                        <p>財團法人台北市老人基金會以「老吾老以及人之老」為服務宗旨，專注於協助貧困、孤苦、遭棄養的老人。</p>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-12">
+                    <div class="footer__widget">
+                        <h6>訂閱電子報</h6>
+                        <p>獲取我們的最新活動和募資訊息</p>
+                        <form action="#">
+                            <input type="email" placeholder="輸入您的電子郵件" style="width: 100%; padding: 10px; margin-bottom: 10px; border: 1px solid #333; border-radius: 5px;">
+                            <button type="submit" class="modal-btn">訂閱</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div class="footer__copyright">
+                <div class="row">
+                    <div class="col-lg-12 text-center">
+                        <p>76.7.20北市社四字第33240號</p>
+                        <p>Copyright © 2025 90.am rights reserved.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>

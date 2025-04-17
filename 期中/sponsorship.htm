@@ -1,0 +1,672 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="keywords" content="90.am‧老人基金會‧老吾老以及人之老‧老人服務‧身障福利‧身障補助">
+    <title>長者服務與資源——老人助養 | 財團法人台北市老人基金會</title>
+    
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@200;300;400;600;900&display=swap" rel="stylesheet">
+
+    <!-- Css Styles -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/4.6.2/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/elegant-icons/1.0.0/style.min.css" />
+
+    <style>
+        /* 主題顏色定義 - 參考Ogani樣式但調整為適合老人基金會 */
+        :root {
+            --primary-color: #7fad39; /* Ogani主色 */
+            --secondary-color: #2a4365;
+            --accent-color: #4a5568;
+            --text-color: #2d3748;
+            --light-bg: #f5f5f5;
+            --white: #ffffff;
+            --shadow-color: rgba(0, 0, 0, 0.1);
+            --footer-bg: #2a4365;
+        }
+
+        html, body {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            width: 100%;
+            overflow-x: hidden; /* 防止水平滾動條 */
+        }
+
+        body {
+            font-family: "Microsoft JhengHei", "Cairo", sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            background-color: var(--light-bg);
+        }
+
+        /* 基本連結樣式 */
+        a {
+            text-decoration: none;
+            color: var(--text-color);
+            transition: all 0.3s;
+        }
+
+        a:hover {
+            color: var(--primary-color);
+            text-decoration: none;
+        }
+
+        /* 標題樣式 */
+        h1, h2, h3, h4, h5, h6 {
+            font-weight: 600;
+            margin-bottom: 15px;
+        }
+
+        /* 頂部信息欄 */
+        .header__top {
+            background: var(--secondary-color);
+            padding: 10px 0;
+            width: 100%;
+        }
+
+        .header__top__left {
+            padding: 6px 0;
+        }
+
+        .header__top__left p {
+            color: var(--white);
+            margin-bottom: 0;
+        }
+
+        .header__top__right {
+            text-align: right;
+            padding: 6px 0;
+        }
+
+        .header__top__right a {
+            color: var(--white);
+            margin-right: 15px;
+            font-size: 14px;
+        }
+
+        .header__top__right a:hover {
+            color: var(--primary-color);
+        }
+
+        /* Logo區塊 */
+        .header__logo {
+            padding: 15px 0;
+        }
+
+        .header__logo h1 {
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--text-color);
+            margin-bottom: 0;
+        }
+
+        /* 返回按鈕 */
+        .back-button {
+            display: inline-block;
+            padding: 8px 20px;
+            background-color: var(--secondary-color);
+            color: var(--white);
+            border-radius: 4px;
+            margin-bottom: 20px;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+
+        .back-button:hover {
+            background-color: var(--primary-color);
+            color: var(--white);
+            text-decoration: none;
+        }
+
+        .back-button i {
+            margin-right: 5px;
+        }
+
+        /* 頁面標題 */
+        .page-title {
+            background: var(--white);
+            padding: 20px 30px;
+            border-radius: 5px;
+            box-shadow: 0 2px 10px var(--shadow-color);
+            margin-bottom: 30px;
+        }
+
+        .page-title h2 {
+            color: var(--text-color);
+            margin-bottom: 0;
+            font-size: 24px;
+        }
+
+        /* 老人選擇區域 */
+        .steps {
+            display: flex;
+            justify-content: space-around;
+            margin: 20px 0;
+        }
+
+        .step {
+            background-color: #fff;
+            padding: 20px;
+            width: 30%;
+            text-align: center;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .step img {
+            width: 100%;
+            height: auto;
+            margin-bottom: 10px;
+        }
+
+        /* 側邊欄區域 */
+        .sidebar {
+            background: var(--white);
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 2px 10px var(--shadow-color);
+            margin-bottom: 30px;
+        }
+
+        .sidebar__title {
+            font-size: 18px;
+            color: var(--text-color);
+            font-weight: 700;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid #e5e5e5;
+        }
+
+        .sidebar__filter {
+            margin-bottom: 25px;
+        }
+
+        .sidebar__filter select {
+            width: 100%;
+            height: 40px;
+            border: 1px solid #e5e5e5;
+            border-radius: 5px;
+            padding: 0 15px;
+            font-size: 14px;
+            margin-bottom: 10px;
+        }
+
+        .sidebar__filter label {
+            font-size: 14px;
+            display: block;
+            margin-bottom: 5px;
+            color: var(--accent-color);
+        }
+
+        .filter-btn {
+            background: var(--primary-color);
+            color: var(--white);
+            border: none;
+            padding: 8px 20px;
+            border-radius: 5px;
+            font-weight: 600;
+            cursor: pointer;
+            width: 100%;
+            transition: all 0.3s;
+        }
+
+        .filter-btn:hover {
+            background: #5c8129;
+        }
+
+        /* 補助內容卡片 */
+        .subsidy-card {
+            background: var(--white);
+            border-radius: 5px;
+            box-shadow: 0 2px 10px var(--shadow-color);
+            padding: 20px;
+            margin-bottom: 20px;
+            transition: all 0.3s;
+        }
+
+        .subsidy-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .subsidy-card__title {
+            font-size: 18px;
+            color: var(--text-color);
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+
+        .subsidy-card__area {
+            color: var(--secondary-color);
+            font-weight: 600;
+            margin-bottom: 5px;
+        }
+
+        .subsidy-badge {
+            display: inline-block;
+            padding: 3px 10px;
+            background: var(--light-bg);
+            border-radius: 20px;
+            margin-right: 5px;
+            margin-bottom: 5px;
+            font-size: 12px;
+            color: var(--accent-color);
+        }
+
+        .subsidy-badge.disability {
+            background-color: #ebf8ff;
+            color: #2b6cb0;
+        }
+
+        .subsidy-badge.location {
+            background-color: #faf5ff;
+            color: #6b46c1;
+        }
+
+        .subsidy-card__info {
+            margin: 15px 0;
+        }
+
+        .subsidy-card__info p {
+            margin-bottom: 5px;
+            color: var(--accent-color);
+        }
+
+        .subsidy-card__info p strong {
+            color: var(--text-color);
+            margin-right: 5px;
+        }
+
+        .subsidy-card__cta {
+            display: inline-block;
+            padding: 8px 20px;
+            background: var(--primary-color);
+            color: var(--white);
+            border-radius: 5px;
+            font-size: 14px;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+
+        .subsidy-card__cta:hover {
+            background: #5c8129;
+            color: var(--white);
+            text-decoration: none;
+        }
+
+        /* 結果計數 */
+        .result-count {
+            margin-bottom: 20px;
+            font-size: 16px;
+            color: var(--accent-color);
+        }
+
+        /* 表單和活動卡片 */
+        .activity-card {
+            background: var(--white);
+            border-radius: 5px;
+            box-shadow: 0 2px 10px var(--shadow-color);
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+
+        .activity-card h4 {
+            font-size: 20px;
+            font-weight: 700;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .feedback-form {
+            max-width: 500px;
+            margin: 0 auto;
+        }
+
+        .feedback-form input,
+        .feedback-form textarea {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #e5e5e5;
+            border-radius: 5px;
+            font-size: 14px;
+        }
+
+        .feedback-form textarea {
+            resize: vertical;
+        }
+
+        .feedback-form button {
+            background: var(--primary-color);
+            color: var(--white);
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            font-weight: 600;
+            cursor: pointer;
+            width: 100%;
+            transition: all 0.3s;
+        }
+
+        .feedback-form button:hover {
+            background: #5c8129;
+        }
+
+        /* 照片區塊 */
+        .photo-gallery img {
+            border-radius: 5px;
+            box-shadow: 0 2px 10px var(--shadow-color);
+            margin-bottom: 15px;
+        }
+
+        /* Footer區塊 */
+        .footer-wrapper {
+            background: var(--footer-bg);
+            width: 100%;
+            margin: 0;
+            padding: 0;
+        }
+
+        .footer {
+            padding: 70px 0 0;
+            color: #b5b5b5;
+            margin-top: 50px;
+        }
+
+        .footer__widget {
+            margin-bottom: 30px;
+        }
+
+        .footer__widget h6 {
+            color: var(--white);
+            font-size: 16px;
+            margin-bottom: 20px;
+        }
+
+        .footer__widget p {
+            margin-bottom: 15px;
+        }
+
+        .footer__widget form input {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #333;
+            border-radius: 5px;
+            color: #333;
+        }
+
+        .footer__widget form button {
+            background: var(--primary-color);
+            color: var(--white);
+            border: none;
+            padding: 10px 28px;
+            border-radius: 30px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .footer__widget form button:hover {
+            background: #5c8129;
+        }
+
+        .footer__copyright {
+            padding: 20px 0;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            text-align: center;
+            margin-top: 40px;
+        }
+
+        .footer__copyright p {
+            margin-bottom: 0;
+        }
+
+        /* 載入中動畫 */
+        .loading {
+            text-align: center;
+            padding: 50px 0;
+            display: none;
+        }
+
+        .loading i {
+            font-size: 36px;
+            color: var(--primary-color);
+            animation: spin 1s infinite linear;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        /* 響應式設計 */
+        @media (max-width: 992px) {
+            .sidebar {
+                margin-bottom: 30px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .sidebar {
+                margin-bottom: 30px;
+            }
+            
+            .page-title h2 {
+                font-size: 20px;
+            }
+
+            .steps {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .step {
+                width: 80%;
+                margin-bottom: 20px;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .header__logo h1 {
+                font-size: 20px;
+            }
+            
+            .subsidy-card {
+                padding: 15px;
+            }
+            
+            .subsidy-card__title {
+                font-size: 16px;
+            }
+
+            .step {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- 頂部信息欄 -->
+    <div class="header__top">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6 col-md-6">
+                    <div class="header__top__left">
+                        <p>老吾老以及人之老，用愛與關懷，形成善的循環</p>
+                    </div>
+                </div>
+                <div class="col-lg-6 col-md-6">
+                    <div class="header__top__right">
+                        <a href="#"><i class="fa fa-envelope"></i> info@old.org.tw</a>
+                        <a href="#"><i class="fa fa-phone"></i> (02)2533-3333</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Header區域 -->
+    <header class="header">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="header__logo text-center">
+                        <h1>財團法人台北市老人基金會</h1>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- 主要內容區 -->
+    <section class="subsidies-section">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <a href="main.htm" class="back-button"><i class="fa fa-arrow-left"></i> 回到首頁</a>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="page-title">
+                        <h2>長者服務與資源——老人助養</h2>       
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-12">
+                    <div style="text-align: center;">
+                        <h2>簡介</h2>  
+                    </div>
+                    <div>
+                        <h5>老人基金會自77年起，對散居各地的貧困無依老人展開關懷協助，二十餘年來協助個案累積逾數萬位，部分個案協助期約二十年。由於近年來社會福利制度已臻健全，低收入老人獲得政府生活補助，但仍有三種老人成為社會福利制度邊緣人，<br>
+                            一：居住地點非戶籍所在地，無法獲得補助。<br>
+                            二：已獲得補助，但不足以支付實際生活需求。<br>
+                            三：子女未盡撫養義務，卻造成老人無法申請補助。<br>
+                            由於助養工作係本會設立初衷，且許多老人多年來一直由本會照顧中，故助養組將堅定持續這項充滿愛心與感動的工作。<br></h5>     
+                    </div>
+                </div>
+            </div>
+            <div style="text-align: center;">
+                <h2>老人助養活動<br></h2>
+            </div>
+            <div style="text-align: center;">
+                <p><span style="color:#f28500;">改變，從一個選擇開始</span></p>
+                <p>一張來自台灣的照片、一份愛心，就能翻讓長者更好過<br></p>
+                <p>一個「選擇」，能產生多大的力量？<br></p>
+                <p>邀請您參加老人資助計畫，成為長者的資助人，<br></p>
+                <p>透過每月的資助款，<br></p>
+                <p>與老人基金會一起，從根本，改善長者人生最後一哩路，<br></p>
+                <p><span style="color:#f28500;">從一個「選擇」開始</span><br></p>
+            </div>
+            <div class="row">
+                <section class="steps">
+                    <div class="step">
+                        <h6><span style="color: #5c8129;">1.登記我想要被選擇</span><br></h6>
+                        <img src="spon.step1.png" alt="Step 1">
+                        <p>報名並提供自己的直式照片，繳交資助款，我們會將您的照片傳送到計畫區，來預備長者的資助人選擇。</p>
+                    </div>
+                    <div class="step">
+                        <h6><span style="color: #5c8129;">2.長者分配</span><br></h6>
+                        <img src="spon.step2.png" alt="Step 2">
+                        <p>由分會分配需要資助的長者成為他的資助人，並寫下選擇您的理由。</p>
+                    </div>
+                    <div class="step">
+                        <h6><span style="color: #5c8129;">3.恭喜您被選擇了</span><br></h6>
+                        <img src="spon.step3.png" alt="Step 3">
+                        <p>本會會將長者資料寄到您的Email，您可以寫信給您的長者，表達溫暖。</p>
+                    </div>
+                </section>
+                
+                <div style="text-align: center;" class="activity-card">
+                    <h4>老人助養活動報名</h4>
+                </div>
+
+                <div class="activity-card">
+                    <form class="feedback-form" onsubmit="showThankYouModal(event)">
+                        <input type="text" placeholder="姓名" required><br>
+                        <input type="tel" placeholder="電話" required><br>
+                        <input type="text" placeholder="email:" required><br>
+                        <input type="text" placeholder="地址" required><br>
+                        <textarea placeholder="留言給我們" rows="4" required></textarea><br>
+                        <button type="submit" class="modal-btn">提交</button>
+                    </form>
+                </div>
+
+                <!-- 照片區塊 -->
+                <section class="photo-gallery my-5">
+                    <div class="container">
+                        <div style="text-align: center;" class="section-title">
+                            <h2>老人助養活動照片</h2>
+                        </div>
+                        <div class="row mb-4">
+                            <div class="col-md-4">
+                                <img src="spon.photo1.png" class="img-fluid" alt="圖片1">
+                            </div>
+                            <div class="col-md-4">
+                                <img src="spon.photo2.png" class="img-fluid" alt="圖片2">
+                            </div>
+                            <div class="col-md-4">
+                                <img src="spon.photo3.png" class="img-fluid" alt="圖片3">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-4">
+                                <img src="spon.photo4.png" class="img-fluid" alt="圖片4">
+                            </div>
+                            <div class="col-md-4">
+                                <img src="spon.photo5.png" class="img-fluid" alt="圖片5">
+                            </div>
+                            <div class="col-md-4">
+                                <img src="spon.photo6.png" class="img-fluid" alt="圖片6">
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <div class="footer-wrapper">
+        <footer class="footer">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-4 col-md-6 col-sm-6">
+                        <div class="footer__widget">
+                            <h6>聯絡資訊</h6>
+                            <p>地址：104臺北市中山區敬業一路128巷41號2樓之2</p>
+                            <p>電話：(02)2533-3333</p>
+                            <p>傳真：(02)2533-9999</p>
+                            <p>郵政劃撥：19181717</p>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-6 col-sm-6">
+                        <div class="footer__widget">
+                            <h6>關於我們</h6>
+                            <p>財團法人台北市老人基金會以「老吾老以及人之老」為服務宗旨，專注於協助貧困、孤苦、遭棄養的老人。</p>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-12">
+                        <div class="footer__widget">
+                            <h6>訂閱電子報</h6>
+                            <p>獲取我們的最新活動和募資訊息</p>
+                            <form action="#">
+                                <input type="email" placeholder="輸入您的電子郵件">
+                                <button type="submit">訂閱</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <div class="footer__copyright">
+                    <div class="row">
+                        <div class="col-lg-12 text-center">
+                            <p>76.7.20北市社四字第33240號</p>
+                            <p>Copyright © 2025 90.am rights reserved.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </footer>
+    </div>
